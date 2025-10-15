@@ -32,6 +32,7 @@ export const SlideImage = ({
         src={slide.image}
         alt={slide.title}
         fill
+        priority
         className="object-cover sm:object-cover md:object-cover lg:object-cover xl:object-cover 2xl:object-cover xs:object-contain"
         sizes="(max-width: 1024px) 100vw, 60vw"
       />

@@ -6,5 +6,6 @@ export type Slide = {
   buttonText: string;
   image: string;
   bgColor: string;
-  info:string
+  info: string
+  infoTitle?:string
 };

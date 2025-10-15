@@ -24,7 +24,7 @@ export const SlideText = ({
         <p className="text-sm uppercase tracking-wider opacity-80 animate-fade-in">
           {slide.subtitle}
         </p>
-        <h1 className=" text-center   text-[clamp(44px,4vw,72px)]  leading-2; font-gibb  whitespace-pre-line animate-fade-in-up">
+        <h1 className=" text-center  uppercase text-[clamp(44px,4vw,72px)]  leading-2; font-gibb  whitespace-pre-line animate-fade-in-up">
           {slide.title}
         </h1>
         <p className="text-sm opacity-70 animate-fade-in">{slide.date}</p>
@@ -33,7 +33,9 @@ export const SlideText = ({
         {slide.buttonText}
       </Button>
       <div className=" bottom-6 left-8 text-white text-xs z-10 animate-fade-in">
-        <span className="text-custom-gray-dark"> Среди авторов</span>
+        {slide.infoTitle ?? (
+          <span className="text-custom-gray-dark">{slide.infoTitle}</span>
+        )}
         <p className="text-white">{slide.info}</p>
       </div>
     </div>

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Search, ShoppingCart, User, Menu, X } from "lucide-react";
+import { Search, Menu, X } from "lucide-react";
 import Image from "next/image";
 import SearchCommand from "../Search";
 

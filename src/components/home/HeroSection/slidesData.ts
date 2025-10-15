@@ -8,6 +8,7 @@ export const slides = [
     image:
       "/img/hero-slider/1.webp",
     bgColor: "#2D3E7C",
+    infoTitle:"Среди авторов",
     info:"Илья Репин • Иван Шишкин • Иван Айвазовский • +23",
   },
   {
@@ -29,8 +30,8 @@ export const slides = [
     buttonText: "Посмотреть →",
     image:
       "/img/hero-slider/1.jpg",
-      bgColor: "#B59E5B",
-     info:"Илья Репин • Иван Шишкин • Иван Айвазовский • +23",
+    bgColor: "#B59E5B",
+     info:"Холст, Масло • 52x64 • Россия • 1894",
   },
   {
     id: 4,
@@ -40,7 +41,7 @@ export const slides = [
     buttonText: "Перейти →",
     image:
       "/img/hero-slider/2.jpg",
-    bgColor: "#2C5F5D",
+    bgColor: "#513B29",
     info:"",
   },
 ];

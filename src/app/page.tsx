@@ -5,13 +5,6 @@ import HeroSection from "@/components/home/HeroSection/HeroSection";
 import NewsSection from "@/components/home/NewsSection/NewsSection";
 import ProductSection from "@/components/home/ProductSection/ProductSections";
 
-const newsItem = {
-  title:
-    "Открытие персональной выставки Пензенских художников Андрея и Арины Уделовых",
-  nameOfTitle: "Статья об искусстве",
-  date: "10 сентября",
-  imageUrl: "/img/news/example.png",
-};
 const newsItems = [
   {
     title:
