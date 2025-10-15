@@ -21,7 +21,7 @@ export const SlideImage = ({
 }: SlideImageProps) => {
   return (
     <div
-      className="relative w-full h-[30vh] xs:h-[40vh]  sm:h-[50vh] md:h-[70vh] lg:h-full overflow-hidden shadow-2xl flex flex-col justify-end"
+      className="relative w-full h-[30vh]   sm:h-[50vh] md:h-[70vh] lg:h-[100vh] overflow-hidden shadow-2xl flex flex-col justify-end"
       style={{
         animation: isAnimating
           ? `slideIn${direction === "right" ? "Right" : "Left"} 0.7s ease-out`
@@ -33,7 +33,7 @@ export const SlideImage = ({
         alt={slide.title}
         fill
         priority
-        className="object-cover sm:object-cover md:object-cover lg:object-cover xl:object-cover 2xl:object-cover xs:object-contain"
+        className="object-cover "
         sizes="(max-width: 1024px) 100vw, 60vw"
       />
 

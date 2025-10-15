@@ -12,7 +12,7 @@ export const SlideText = ({
   direction,
 }: SlideTextProps) => {
   return (
-    <div className="flex flex-col items-center justify-center gap-10 md:4.5  lg:gap-25 text-center">
+    <div className="flex flex-col items-center justify-around gap-10 md:4.5  lg:gap-25 text-center">
       <div
         className="text-white z-10  flex gap-4 flex-col justify-center items-center text-center"
         style={{
