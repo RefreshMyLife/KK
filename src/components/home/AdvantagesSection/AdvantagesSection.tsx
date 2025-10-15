@@ -4,7 +4,7 @@ import { AdvantagesItem } from "./AdvantagesItem";
 export const AdvantagesSection = () => {
   return (
     <div className="flex flex-col justify-between items-center gap-16 py-16 px-4 md:px-16">
-      <h3 className="text-2xl md:text-3xl text-center">
+      <h3 className="text-2xl font-gibb md:text-3xl text-center">
         Преимущества сотрудничества с нами
       </h3>
       <div className="flex flex-col md:flex-row flex-wrap gap-8 justify-center md:justify-between w-full">

@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  useState,
-  useEffect,
-  useRef,
-  useCallback,
-  useLayoutEffect,
-} from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { NewsItem } from "./NewsItem";
 
@@ -23,14 +17,13 @@ interface NewsProps {
 }
 
 export default function NewsSection({ newsItems, title }: NewsProps) {
-  const [visibleCount, setVisibleCount] = useState<number>(3);
-  const [index, setIndex] = useState<number>(0);
-  const viewportRef = useRef<HTMLDivElement | null>(null);
-  const [viewportWidth, setViewportWidth] = useState<number | null>(null);
+  const [visibleCount, setVisibleCount] = useState(3);
+  const [index, setIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const slideScale = 1.25;
+  const GAP = 16;
+  const SLIDE_WIDTH_MULTIPLIER = visibleCount === 1 ? 1.1 : 1.2; // 1.1 — умножает на translate ; 1.2 уможает на width
 
-  const GAP_PX = 16;
   useLayoutEffect(() => {
     const updateVisibleCount = () => {
       const width = window.innerWidth;
@@ -43,69 +36,17 @@ export default function NewsSection({ newsItems, title }: NewsProps) {
     return () => window.removeEventListener("resize", updateVisibleCount);
   }, []);
 
-  // ResizeObserver: надёжно отслеживаем размер вьюпорта слайдера
-  useLayoutEffect(() => {
-    const el = viewportRef.current;
-    if (!el) return;
-
-    setViewportWidth(el.clientWidth);
-
-    const ro = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        const w = entry.contentRect.width;
-        setViewportWidth(Math.floor(w));
-      }
-    });
-
-    ro.observe(el);
-
-    return () => ro.disconnect();
-  }, [viewportRef]);
-
-  const next = () => setIndex((i) => (i + 1 >= newsItems.length ? 0 : i + 1));
+  const next = () => setIndex((i) => (i + 1) % newsItems.length);
   const prev = () =>
-    setIndex((i) => (i - 1 < 0 ? newsItems.length - 1 : i - 1));
+    setIndex((i) => (i - 1 + newsItems.length) % newsItems.length);
 
   const extended = [...newsItems, ...newsItems, ...newsItems];
-  const startIndex = newsItems.length + index;
-
-  if (viewportWidth === null) {
-    return (
-      <section className="w-full py-8 px-4 relative">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold uppercase tracking-wide">
-            {title}
-          </h2>
-          <div className="flex gap-4">
-            <button aria-hidden className="p-2 rounded-full opacity-0">
-              <ArrowLeft className="w-6 h-6" />
-            </button>
-            <button aria-hidden className="p-2 rounded-full opacity-0">
-              <ArrowRight className="w-6 h-6" />
-            </button>
-          </div>
-        </div>
-
-        <div
-          ref={viewportRef}
-          className="relative w-full"
-          style={{ minHeight: 530 }}
-        />
-      </section>
-    );
-  }
-
-  const totalGap = (visibleCount - 1) * GAP_PX;
-  const baseSlideWidth = Math.floor((viewportWidth - totalGap) / visibleCount);
-  const scaledSlideWidth = Math.round(baseSlideWidth * slideScale);
-
-  const translatePx =
-    (startIndex - newsItems.length) * (scaledSlideWidth + GAP_PX);
+  const centerIndex = newsItems.length + index;
 
   return (
-    <section className="w-full py-8 px-4 relative">
-      <div className="flex justify-between items-center mb-8">
-        <h2 className="text-3xl font-bold uppercase tracking-wide">{title}</h2>
+    <section className="w-full py-8 relative">
+      <div className="flex justify-between items-center mb-8 px-8">
+        <h2 className="text-4xl font-gibb uppercase tracking-wide">{title}</h2>
         <div className="flex gap-4">
           <button
             onClick={prev}
@@ -125,28 +66,38 @@ export default function NewsSection({ newsItems, title }: NewsProps) {
       </div>
 
       <div
-        ref={viewportRef}
-        className="relative w-full"
-        style={{ minHeight: 530 }}
+        className={`relative ${
+          visibleCount === 1 ? "overflow-hidden" : "overflow-hidden"
+        } pl-8`}
       >
         <div
-          className="absolute left-0 top-0 flex"
+          ref={containerRef}
+          className="flex transition-transform duration-500 ease-in-out"
           style={{
-            gap: `${GAP_PX}px`,
-            transform: `translateX(-${translatePx}px)`,
-            transition: "transform 500ms ease-in-out",
-            willChange: "transform",
-            pointerEvents: "auto",
+            gap: `${GAP}px`,
+            transform: `translateX(-${
+              (centerIndex - newsItems.length) *
+              ((100 * SLIDE_WIDTH_MULTIPLIER) / visibleCount)
+            }%)`,
           }}
         >
           {extended.map((newsItem, i) => (
             <div
-              key={`${i}-${visibleCount}-${viewportWidth}`}
+              key={i}
               className="flex-shrink-0"
               style={{
-                width: `${scaledSlideWidth}px`,
-                height: "700px",
-                boxSizing: "border-box",
+                width:
+                  visibleCount === 1
+                    ? `calc(100vw - 64px)`
+                    : `calc((100vw - ${
+                        GAP * (visibleCount - 1)
+                      }px) / ${visibleCount} * ${SLIDE_WIDTH_MULTIPLIER})`,
+                minWidth:
+                  visibleCount === 1
+                    ? `calc(100vw - 64px)`
+                    : `calc((100vw - ${
+                        GAP * (visibleCount - 1)
+                      }px) / ${visibleCount} * ${SLIDE_WIDTH_MULTIPLIER})`,
               }}
             >
               <NewsItem newsItem={newsItem} />

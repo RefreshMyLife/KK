@@ -3,8 +3,8 @@ import { AdvantagesSection } from "@/components/home/AdvantagesSection/Advantage
 import ContactSection from "@/components/home/ContactSection/ContactSection";
 import HeroSection from "@/components/home/HeroSection/HeroSection";
 import NewsSection from "@/components/home/NewsSection/NewsSection";
+import ProductSection from "@/components/home/ProductSection/ProductSections";
 
-import ProductSection from "@/components/home/ProductSection/ProducrSections";
 const newsItem = {
   title:
     "Открытие персональной выставки Пензенских художников Андрея и Арины Уделовых",

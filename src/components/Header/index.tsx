@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Search, ShoppingCart, User, Menu, X } from "lucide-react";
 import Image from "next/image";
 import SearchCommand from "../Search";
@@ -7,6 +7,8 @@ import SearchCommand from "../Search";
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
+  const [showHeader, setShowHeader] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const navLinks = [
     { name: "КАТАЛОГ", href: "#" },
@@ -16,8 +18,28 @@ export default function Header() {
     { name: "КОНТАКТЫ", href: "#" },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      // Показать при скролле вверх, скрыть при скролле вниз
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setShowHeader(false);
+      } else {
+        setShowHeader(true);
+      }
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   return (
-    <header className="w-full bg-white">
+    <header
+      className={`fixed top-0 left-0 w-full bg-white shadow transition-transform duration-300 z-50 ${
+        showHeader ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       <div className="mx-auto">
         <div className="flex items-center justify-between h-16 lg:h-20 px-4">
           {/* Logo */}
@@ -44,7 +66,7 @@ export default function Header() {
 
             {/* Mobile Search Icon */}
             <button
-              className="md:hidden  text-gray-700 hover:text-gray-900 transition-colors"
+              className="md:hidden text-gray-700 hover:text-gray-900 transition-colors"
               onClick={() => setMobileSearchOpen(!mobileSearchOpen)}
             >
               {mobileSearchOpen ? (

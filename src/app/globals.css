@@ -5,7 +5,7 @@
 
 @font-face {
     font-family: 'Gibb Sans';
-    src: url('/public/fonts/gibb-sans-regular.woff2') format('woff2');
+    src: url('/fonts/gibb-sans-regular.woff2') format('woff2');
     font-weight: 400;
     font-display: swap;
 }

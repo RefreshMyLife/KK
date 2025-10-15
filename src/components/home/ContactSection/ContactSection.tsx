@@ -20,7 +20,7 @@ export default function ContactSection() {
 
   return (
     <div className="relative min-h-screen flex items-center justify-end p-4 md:p-8">
-      <div className="absolute w-[57px] h-[57px] z-2">
+      <div className="absolute w-[57px] h-[57px] z-[2] left-4.5 top-6 hidden sm:block">
         <Image
           src={"/img/logo-light.svg"}
           alt="light-logo"
@@ -40,27 +40,32 @@ export default function ContactSection() {
       </div>
 
       <div className="relative w-full max-w-6xl flex justify-end z-10">
-        <div className="w-full md:w-1/2 lg:w-[60%] bg-black text-white p-8 md:p-12 flex flex-col justify-between ">
+        <div className="w-full  lg:w-[60%] bg-black text-white p-8 md:p-12 flex flex-col justify-between ">
           <div>
-            <h1 className="text-4xl md:text-5xl  mb-6">ОСТАВАЙТЕСЬ В КУРСЕ!</h1>
+            <h2 className="text-3xl md:text-4xl font-gibb mb-6">
+              ОСТАВАЙТЕСЬ В КУРСЕ!
+            </h2>
             <p className="text-gray-400 mb-8 text-lg">
               Подписывайтесь на рассылку, чтобы первыми узнавать о самых
               интересных и выгодных предложениях!
             </p>
 
-            <form onSubmit={handleSubmit} className="mb-12">
+            <form
+              onSubmit={handleSubmit}
+              className="mb-12 text-sm sm:text-base"
+            >
               <div className="flex gap-0 overflow-hidden">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Введите Email"
-                  className="flex-1 bg-zinc-800 text-white px-6 py-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="flex-1 bg-zinc-800  text-white px-2  sm:px-6 py-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
                 <button
                   type="submit"
-                  className="bg-zinc-700 hover:bg-zinc-600 text-white px-8 py-4 transition-colors font-medium"
+                  className="bg-zinc-700 hover:bg-zinc-600 text-white px-2  sm:px-8 py-4 transition-colors font-medium"
                 >
                   {isSubmitted ? "✓ Отправлено" : "Отправить"}
                 </button>
