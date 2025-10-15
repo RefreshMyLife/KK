@@ -1,0 +1,41 @@
+import { Button } from "@/components/ui/button";
+import { Slide } from "./types";
+
+interface SlideTextProps {
+  slide: Slide;
+  isAnimating: boolean;
+  direction: "left" | "right";
+}
+export const SlideText = ({
+  slide,
+  isAnimating,
+  direction,
+}: SlideTextProps) => {
+  return (
+    <div className="flex flex-col items-center justify-center gap-10 md:4.5  lg:gap-25 text-center">
+      <div
+        className="text-white z-10  flex gap-4 flex-col justify-center items-center text-center"
+        style={{
+          animation: isAnimating
+            ? `slideIn${direction === "right" ? "Left" : "Right"} 0.7s ease-out`
+            : "none",
+        }}
+      >
+        <p className="text-sm uppercase tracking-wider opacity-80 animate-fade-in">
+          {slide.subtitle}
+        </p>
+        <h1 className=" text-center   text-[clamp(44px,4vw,72px)]  leading-2; font-gibb  whitespace-pre-line animate-fade-in-up">
+          {slide.title}
+        </h1>
+        <p className="text-sm opacity-70 animate-fade-in">{slide.date}</p>
+      </div>
+      <Button className="bg-white text-gray-900 hover:bg-gray-100 border-0 px-8 py-6 text-base animate-fade-in-up hover:scale-105 transition-transform duration-300">
+        {slide.buttonText}
+      </Button>
+      <div className=" bottom-6 left-8 text-white text-xs z-10 animate-fade-in">
+        <span className="text-custom-gray-dark"> Среди авторов</span>
+        <p className="text-white">{slide.info}</p>
+      </div>
+    </div>
+  );
+};

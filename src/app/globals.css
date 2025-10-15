@@ -1,26 +1,47 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
+
+
+@font-face {
+    font-family: 'Gibb Sans';
+    src: url('/public/fonts/gibb-sans-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+@theme {
+  --font-inter: 'Inter', sans-serif;
+  --font-gibb:  "Gibb Sans", sans-serif;
+  --color-custom-blue:#0004FF; 
+  --color-custom-red:#E40400; 
+  --color-custom-gray-light:#EEEEEE; 
+  --color-custom-gray-dark:#9C9C9C; 
+  --breakpoint-xs: 120rem;
+}
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --layout-padding: 30px;
+  
+}
+/* Основной контейнер с отступами */
+.layout-wrapper {
+  padding-left: var(--layout-padding);
+  padding-right: var(--layout-padding);
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Фон или блок на всю ширину */
+.full-width {
+ width: 100vw;
+margin-left: calc(-1 * var(--layout-padding));
+margin-right: calc(-1 * var(--layout-padding));
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Слайдер, выходящий за правую границу */
+.slider-overflow {
+   overflow: visible;
+  position: relative;
+  width: 100%;
 }
-
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
