@@ -22,7 +22,7 @@ export default function Header() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       // Показать при скролле вверх, скрыть при скролле вниз
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      if (currentScrollY > lastScrollY && currentScrollY > 10) {
         setShowHeader(false);
       } else {
         setShowHeader(true);

@@ -22,7 +22,7 @@ export default function NewsSection({ newsItems, title }: NewsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const GAP = 16;
-  const SLIDE_WIDTH_MULTIPLIER = visibleCount === 1 ? 1.1 : 1.2; // 1.1 — умножает на translate ; 1.2 уможает на width
+  const SLIDE_WIDTH_MULTIPLIER = visibleCount === 1 ? 1 : 1.2; // На мобилке слайд заполняет весь экран
 
   useLayoutEffect(() => {
     const updateVisibleCount = () => {
@@ -46,7 +46,7 @@ export default function NewsSection({ newsItems, title }: NewsProps) {
   return (
     <section className="w-full py-8 relative">
       <div className="flex justify-between items-center mb-8 px-8">
-        <h2 className="text-4xl font-gibb uppercase tracking-wide">{title}</h2>
+        <h2 className="text-3xl font-bold uppercase tracking-wide">{title}</h2>
         <div className="flex gap-4">
           <button
             onClick={prev}

@@ -42,7 +42,7 @@ export default function HeroSection() {
 
   return (
     <div
-      className="relative min-h-[100vh] lg:h-screen overflow-hidden transition-all duration-700 ease-in-out  "
+      className="relative min-h-[100vh] lg:h-screen overflow-hidden transition-all duration-700 ease-in-out py-16 lg:py-20 "
       style={{ backgroundColor: slide.bgColor }}
     >
       <div className="mx-auto h-full  flex items-center ">

@@ -68,7 +68,11 @@ export default function ProductSection({
     <section className="w-full py-16">
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-semibold uppercase ml-3">{title} →</h2>
+        <div className="flex gap-2 items-centertext-2xl font-semibold uppercase ml-3">
+          <h2>{title}</h2>
+          <span>→</span>
+        </div>
+
         <div className="flex gap-2">
           <button onClick={prev} aria-label="Previous">
             <ArrowLeft className="w-5 h-5" />

@@ -12,7 +12,7 @@ export const SlideNavigation = ({
   isAnimating,
 }: SlideNavigationProps) => {
   return (
-    <div className="absolute bottom-6 right-8 lg:right-16 flex gap-2 z-20">
+    <div className="absolute bottom-30 right-8 lg:right-16 flex gap-2 z-20">
       <Button
         variant="ghost"
         size="icon"

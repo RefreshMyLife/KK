@@ -25,7 +25,7 @@ export const NewsItem = ({ newsItem }: NewsItemProps) => {
         width={1000}
         height={1000}
         alt={newsItem.title}
-        className="w-full h-64 object-cover "
+        className="w-full h-full object-cover "
       />
     </div>
   );
