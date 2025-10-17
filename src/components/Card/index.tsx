@@ -44,7 +44,7 @@ export const ProductCard = ({
       <div className="flex flex-col gap-6 justify-center items-center text-center mt-6">
         <div className="flex  flex-col gap-4 justify-center items-center">
           <p className="text-custom-gray-dark text-base">{subtitle}</p>
-          <h3 className="font-gibb text-2xl">{title}</h3>
+          <h3 className="font-gibb text-2xl max-w-[400px]">{title}</h3>
           <p className="text-lg"> {price}</p>
         </div>
 

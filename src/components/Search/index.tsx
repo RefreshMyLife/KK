@@ -60,8 +60,8 @@ export default function SearchCommand() {
   };
 
   return (
-    <div className="relative w-full max-w-[370px]">
-      <Command className="rounded-sm shadow-md overflow-visible">
+    <div className="relative w-full max-w-[370px] rounded-sm  bg-custom-gray-light">
+      <Command className="rounded-sm  overflow-visible">
         <CommandInput
           placeholder="Андерграунд, море, лес..."
           value={inputValue}
@@ -72,8 +72,8 @@ export default function SearchCommand() {
 
       {showResults && (
         <div className="absolute top-full left-0 right-0 mt-1 z-50 animate-in fade-in-0 slide-in-from-top-2 duration-200">
-          <div className="bg-white rounded-sm shadow-lg border">
-            <Command className="rounded-sm shadow-md overflow-visible">
+          <div className="bg-custom-gray-light rounded-sm ">
+            <Command className="rounded-sm  overflow-visible">
               {showResults && (
                 <CommandList>
                   {!hasResults && (

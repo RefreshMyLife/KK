@@ -30,7 +30,7 @@ const newsItems = [
 ];
 const products = [
   {
-    title: "ДУГАРЖАПОВ БАТО ДУГАРОВИЧ",
+    title: "ДУГАРЖАПОВ \n БАТО ДУГАРОВИЧ",
     subtitle: "«история одной работы»",
     price: "300 000 000 ₽",
     details: "Бумага, тушь, кисть",
@@ -80,7 +80,7 @@ const products = [
     imageUrl: "/img/card/example.png",
   },
 ];
-export default function Home() {
+export default async function Home() {
   return (
     <div className="font-sans  ">
       <div className="full-width overflow-x-hidden">

@@ -19,7 +19,7 @@ export default function ContactSection() {
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-end p-4 md:p-8">
+    <div className="relative flex items-center justify-end p-4 md:p-8">
       <div className="absolute w-[57px] h-[57px] z-[2] left-4.5 top-6 hidden sm:block">
         <Image
           src={"/img/logo-light.svg"}
@@ -40,8 +40,8 @@ export default function ContactSection() {
       </div>
 
       <div className="relative w-full max-w-6xl flex justify-end z-10">
-        <div className="w-full  lg:w-[60%] bg-black text-white p-8 md:p-12 flex flex-col justify-between ">
-          <div>
+        <div className="w-full lg:w-[50vw] lg:h-full bg-black text-white p-8 md:p-12 flex flex-col justify-between ">
+          <div className="flex flex-col justify-between ">
             <h2 className="text-3xl md:text-4xl font-gibb mb-6">
               ОСТАВАЙТЕСЬ В КУРСЕ!
             </h2>
@@ -77,11 +77,26 @@ export default function ContactSection() {
                 <h3 className="text-gray-500 uppercase text-sm mb-4 tracking-wider">
                   контакты
                 </h3>
-                <div className="space-y-2">
-                  <p>Москва, Пречистенка 30/2</p>
-                  <p>+7 495 507-64-85</p>
-                  <p>info@kupitkartinu.ru</p>
-                </div>
+                <address className="not-italic space-y-1">
+                  <p>
+                    <a
+                      href="https://yandex.ru/maps/?text=Москва,+Пречистенка+30/2"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline hover:text-blue-600"
+                    >
+                      Москва, Пречистенка 30/2
+                    </a>
+                  </p>
+                  <p>
+                    <a href="tel:+74955076485">+7&nbsp;495&nbsp;507-64-85</a>
+                  </p>
+                  <p>
+                    <a href="mailto:info@kupitkartinu.ru">
+                      info@kupitkartinu.ru
+                    </a>
+                  </p>
+                </address>
               </div>
 
               <div>

@@ -68,7 +68,7 @@ export default function ProductSection({
     <section className="w-full py-16">
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
-        <div className="flex gap-2 items-centertext-2xl font-semibold uppercase ml-3">
+        <div className="flex gap-2 items-centertext-2xl font-gibb text-4xl uppercase ml-3">
           <h2>{title}</h2>
           <span>→</span>
         </div>

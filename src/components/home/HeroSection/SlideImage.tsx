@@ -37,7 +37,7 @@ export const SlideImage = ({
         sizes="(max-width: 1024px) 100vw, 60vw"
       />
 
-      <div className="absolute bottom-23 left-1/2 -translate-x-1/2 w-[90%] max-w-[80%]">
+      <div className="absolute bottom-7 lg:bottom-23 left-[49%] -translate-x-1/2 w-[95%] max-w-[95%]">
         <SlidePagination
           slides={slides}
           currentSlide={currentSlide}

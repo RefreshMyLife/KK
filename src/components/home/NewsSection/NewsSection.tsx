@@ -46,7 +46,7 @@ export default function NewsSection({ newsItems, title }: NewsProps) {
   return (
     <section className="w-full py-8 relative">
       <div className="flex justify-between items-center mb-8 px-8">
-        <h2 className="text-3xl font-bold uppercase tracking-wide">{title}</h2>
+        <h2 className="uppercase tracking-wide font-gibb text-4xl">{title}</h2>
         <div className="flex gap-4">
           <button
             onClick={prev}

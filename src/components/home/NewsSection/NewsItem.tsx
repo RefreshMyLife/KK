@@ -17,7 +17,7 @@ export const NewsItem = ({ newsItem }: NewsItemProps) => {
         <span className="font-sm">{newsItem.date}</span>
         <div className="space-y-2">
           <h4 className="text-lg ">{newsItem.nameOfTitle}</h4>
-          <h3 className="font-gibb text-2xl">{newsItem.title}</h3>
+          <h3 className="font-gibb text-2xl uppercase">{newsItem.title}</h3>
         </div>
       </div>
       <Image

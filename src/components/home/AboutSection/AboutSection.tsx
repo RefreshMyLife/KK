@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 export const AboutSection = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="my-32 bg-white">
       <div className=" mx-auto  py-12">
         {/* Header */}
         <h1 className="text-[40px] font-gibb text-center mb-12">О ПРОЕКТЕ</h1>
