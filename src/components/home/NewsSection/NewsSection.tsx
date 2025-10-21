@@ -44,7 +44,7 @@ export default function NewsSection({ newsItems, title }: NewsProps) {
   const centerIndex = newsItems.length + index;
 
   return (
-    <section className="w-full py-8 relative">
+    <section className="w-full py-16 relative">
       <div className="flex justify-between items-center mb-8 px-8">
         <h2 className="uppercase tracking-wide font-gibb text-4xl">{title}</h2>
         <div className="flex gap-4">

@@ -26,9 +26,9 @@ export default function RootLayout({
       <body className={`layout-wrapper antialiased`}>
         <Header />
         {children}
-        <div className="full-width overflow-x-hidden">
+        {/* <div className="full-width overflow-x-hidden">
           <Footer />
-        </div>
+        </div> */}
       </body>
     </html>
   );
