@@ -8,6 +8,7 @@ import "./animations.css";
 
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [previousSlideIndex, setPreviousSlideIndex] = useState(0);
   const [direction, setDirection] = useState<"left" | "right">("right");
   const [isAnimating, setIsAnimating] = useState(false);
   const [displayedBgColor, setDisplayedBgColor] = useState(slides[0].bgColor);
@@ -16,27 +17,27 @@ export default function HeroSection() {
     if (isAnimating) return;
     setDirection("right");
     setIsAnimating(true);
-    // Меняем фон сразу при смене слайда
-    setDisplayedBgColor(slides[(currentSlide + 1) % slides.length].bgColor);
-    setCurrentSlide((p) => (p + 1) % slides.length);
+    setPreviousSlideIndex(currentSlide);
+    const nextIndex = (currentSlide + 1) % slides.length;
+    setDisplayedBgColor(slides[nextIndex].bgColor);
+    setCurrentSlide(nextIndex);
   };
 
   const prevSlide = () => {
     if (isAnimating) return;
     setDirection("left");
     setIsAnimating(true);
-    // Меняем фон сразу при смене слайда
-    setDisplayedBgColor(
-      slides[(currentSlide - 1 + slides.length) % slides.length].bgColor
-    );
-    setCurrentSlide((p) => (p - 1 + slides.length) % slides.length);
+    setPreviousSlideIndex(currentSlide);
+    const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+    setDisplayedBgColor(slides[prevIndex].bgColor);
+    setCurrentSlide(prevIndex);
   };
 
   const goToSlide = (index: number) => {
     if (isAnimating || index === currentSlide) return;
     setDirection(index > currentSlide ? "right" : "left");
     setIsAnimating(true);
-    // Меняем фон сразу при смене слайда
+    setPreviousSlideIndex(currentSlide);
     setDisplayedBgColor(slides[index].bgColor);
     setCurrentSlide(index);
   };
@@ -58,6 +59,7 @@ export default function HeroSection() {
           <div className="relative w-full h-full lg:order-2">
             <SlideImage
               slide={slide}
+              prevSlide={slides[previousSlideIndex]}
               isAnimating={isAnimating}
               direction={direction}
               currentSlide={currentSlide}
