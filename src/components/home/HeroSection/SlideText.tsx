@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Slide } from "./types";
 import { useEffect, useState } from "react";
+import CountdownTimer from "@/components/CountDownTimer";
 
 interface SlideTextProps {
   slide: Slide;
@@ -12,6 +13,7 @@ export const SlideText = ({
   slide,
   isAnimating,
   direction,
+  initialSeconds,
 }: SlideTextProps) => {
   return (
     <div className="flex flex-col items-center justify-around  2xl:mt-10 2xl:mb-30 gap-10   lg:gap-25 text-center">
@@ -29,7 +31,13 @@ export const SlideText = ({
         <h1 className=" text-center  uppercase text-[clamp(44px,4vw,72px)]  leading-none font-gibb  whitespace-pre-line animate-fade-in-up">
           {slide.title}
         </h1>
-        <p className="text-sm opacity-70 animate-fade-in">{slide.date}</p>
+        <span className="text-white text-lg animate-fade-in">
+          {slide.date ? (
+            slide.date
+          ) : (
+            <CountdownTimer initialSeconds={initialSeconds} />
+          )}
+        </span>
       </div>
       <Button className="bg-white text-gray-900 hover:bg-gray-100 border-0 px-8 py-6 text-base animate-fade-in-up hover:scale-105 transition-transform duration-300">
         {slide.buttonText}

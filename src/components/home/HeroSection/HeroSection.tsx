@@ -10,13 +10,14 @@ export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState<"left" | "right">("right");
   const [isAnimating, setIsAnimating] = useState(false);
-  // Добавляем состояние для фона, чтобы задерживать его изменение
   const [displayedBgColor, setDisplayedBgColor] = useState(slides[0].bgColor);
 
   const nextSlide = () => {
     if (isAnimating) return;
     setDirection("right");
     setIsAnimating(true);
+    // Меняем фон сразу при смене слайда
+    setDisplayedBgColor(slides[(currentSlide + 1) % slides.length].bgColor);
     setCurrentSlide((p) => (p + 1) % slides.length);
   };
 
@@ -24,6 +25,10 @@ export default function HeroSection() {
     if (isAnimating) return;
     setDirection("left");
     setIsAnimating(true);
+    // Меняем фон сразу при смене слайда
+    setDisplayedBgColor(
+      slides[(currentSlide - 1 + slides.length) % slides.length].bgColor
+    );
     setCurrentSlide((p) => (p - 1 + slides.length) % slides.length);
   };
 
@@ -31,21 +36,14 @@ export default function HeroSection() {
     if (isAnimating || index === currentSlide) return;
     setDirection(index > currentSlide ? "right" : "left");
     setIsAnimating(true);
+    // Меняем фон сразу при смене слайда
+    setDisplayedBgColor(slides[index].bgColor);
     setCurrentSlide(index);
   };
 
   useEffect(() => {
-    // Задерживаем изменение фона на 350мс (половина анимации)
-    const bgTimeout = setTimeout(() => {
-      setDisplayedBgColor(slides[currentSlide].bgColor);
-    }, 350);
-
     const animTimeout = setTimeout(() => setIsAnimating(false), 700);
-
-    return () => {
-      clearTimeout(bgTimeout);
-      clearTimeout(animTimeout);
-    };
+    return () => clearTimeout(animTimeout);
   }, [currentSlide]);
 
   const slide = slides[currentSlide];
@@ -77,7 +75,7 @@ export default function HeroSection() {
               slide={slide}
               isAnimating={isAnimating}
               direction={direction}
-              initialSeconds={0}
+              initialSeconds={5600}
             />
           </div>
         </div>

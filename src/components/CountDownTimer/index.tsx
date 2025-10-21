@@ -1,4 +1,3 @@
-// components/CountdownTimer.jsx
 import { useState, useEffect } from "react";
 interface CountdownTimerProps {
   initialSeconds: number;
@@ -29,11 +28,5 @@ export default function CountdownTimer({
     return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
   };
 
-  return (
-    <div
-      style={{ fontSize: "2rem", fontFamily: "monospace", fontWeight: "bold" }}
-    >
-      {formatTime(secondsLeft)}
-    </div>
-  );
+  return <h4>{formatTime(secondsLeft)}</h4>;
 }

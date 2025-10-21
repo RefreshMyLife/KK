@@ -3,7 +3,7 @@ export const slides = [
     id: 1,
     title: "ПЕЙЗАЖИ РУССКОЙ ГЛУБИНКИ",
     subtitle: "Аукцион",
-    date: "23.04.01",
+    date: "",
     buttonText: "Перейти →",
     image:
       "/img/hero-slider/1.webp",
