@@ -68,6 +68,7 @@ export default function HeroSection() {
               slide={slide}
               isAnimating={isAnimating}
               direction={direction}
+              initialSeconds={0}
             />
           </div>
         </div>

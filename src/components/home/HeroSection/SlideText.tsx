@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Slide } from "./types";
+import { useEffect, useState } from "react";
 
 interface SlideTextProps {
   slide: Slide;
   isAnimating: boolean;
   direction: "left" | "right";
+  initialSeconds: number;
 }
 export const SlideText = ({
   slide,

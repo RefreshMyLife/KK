@@ -29,7 +29,7 @@ export const slides = [
     date: "300 000 ₽",
     buttonText: "Посмотреть →",
     image:
-      "/img/hero-slider/1.jpg",
+      "/img/hero-slider/3.jpg",
     bgColor: "#B59E5B",
      info:"Холст, Масло • 52x64 • Россия • 1894",
   },
@@ -40,7 +40,7 @@ export const slides = [
     date: "В новогодние праздники работаем по новому расписанию: 8:00 — 12:00",
     buttonText: "Перейти →",
     image:
-      "/img/hero-slider/2.jpg",
+      "/img/hero-slider/4.jpg",
     bgColor: "#513B29",
     info:"",
   },
