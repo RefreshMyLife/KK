@@ -4,7 +4,7 @@ import ContactSection from "@/components/home/ContactSection/ContactSection";
 import HeroSection from "@/components/home/HeroSection/HeroSection";
 import NewsSection from "@/components/home/NewsSection/NewsSection";
 import ProductSection from "@/components/home/ProductSection/ProductSections";
-import { getMainSlider } from "@/services/mainPage";
+// import { getMainSlider } from "@/services/mainPage";
 
 const newsItems = [
   {
@@ -83,8 +83,8 @@ const products = [
 ];
 
 export default async function Home() {
-  const slider = await getMainSlider();
-  console.log(slider);
+  // const slider = await getMainSlider();
+  //console.log(slider);
   return (
     <div className="font-sans  ">
       <div className="full-width overflow-x-hidden">

@@ -21,9 +21,9 @@ export async function getMainPage() {
   return wpGraphQL(query);
 }
 
-export async function getMainSlider() {
-  const page = await wpRest(`wp/v2/pages/117?acf_format=standard`);
-  const blocks = page?.acf?.bloks || [];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return blocks.find((b: any) => Array.isArray(b.slider))?.slider || [];
-}
+// export async function getMainSlider() {
+//   const page = await wpRest(`wp/v2/pages/117?acf_format=standard`);
+//   const blocks = page?.acf?.bloks || [];
+//   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+//   return blocks.find((b: any) => Array.isArray(b.slider))?.slider || [];
+// }
