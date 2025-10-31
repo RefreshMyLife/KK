@@ -13,7 +13,7 @@ export const SlideNavigation = ({
   isAnimating,
 }: SlideNavigationProps) => {
   return (
-    <div className="absolute bottom-15 lg:bottom-30 right-8 lg:right-16 flex gap-3 z-20">
+    <div className="absolute bottom-8 lg:bottom-30 md:bottom-15 right-8 lg:right-16 sm:right-14  flex gap-3 z-20">
       <Button
         variant="ghost"
         onClick={prevSlide}

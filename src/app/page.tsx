@@ -4,7 +4,7 @@ import ContactSection from "@/components/home/ContactSection/ContactSection";
 import HeroSection from "@/components/home/HeroSection/HeroSection";
 import NewsSection from "@/components/home/NewsSection/NewsSection";
 import ProductSection from "@/components/home/ProductSection/ProductSections";
-// import { getMainSlider } from "@/services/mainPage";
+import { getMainPageWithCategories, getMainSlider } from "@/services/mainPage";
 
 const newsItems = [
   {
@@ -39,6 +39,7 @@ const products = [
     country: "Россия",
     year: "1894",
     imageUrl: "/img/card/example.png",
+    slug: "1",
   },
   {
     title: "ДУГАРЖАПОВ БАТО ДУГАРОВИЧ",
@@ -83,8 +84,9 @@ const products = [
 ];
 
 export default async function Home() {
-  // const slider = await getMainSlider();
-  //console.log(slider);
+  const slider = await getMainSlider();
+  const { blocks, categoryMap } = await getMainPageWithCategories();
+  console.log(blocks, categoryMap, "CATEGORY");
   return (
     <div className="font-sans  ">
       <div className="full-width overflow-x-hidden">

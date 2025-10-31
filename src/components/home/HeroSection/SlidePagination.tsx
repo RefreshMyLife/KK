@@ -17,7 +17,7 @@ export const SlidePagination = ({
         <button
           key={index}
           onClick={() => goToSlide(index)}
-          className={`h-1 rounded-full transition-all duration-500 ease-out ${
+          className={`h-1  transition-all duration-500 ease-out ${
             index === currentSlide ? "flex-[2]" : "flex-[1]"
           }`}
           style={{

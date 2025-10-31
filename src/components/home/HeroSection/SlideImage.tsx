@@ -113,7 +113,7 @@ export const SlideImage = ({
       </div>
 
       {/* Пагинация */}
-      <div className="absolute bottom-7 lg:bottom-23 left-[50%] -translate-x-1/2 w-[90%] max-w-[90%] z-30">
+      <div className="absolute bottom-2 lg:bottom-23 left-[50%] -translate-x-1/2 w-[90%] max-w-[90%] z-30 md:bottom-5 sm:bottom-3">
         <SlidePagination
           slides={slides}
           currentSlide={currentSlide}

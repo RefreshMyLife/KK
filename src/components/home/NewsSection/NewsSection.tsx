@@ -45,9 +45,10 @@ export default function NewsSection({ newsItems, title }: NewsProps) {
 
   return (
     <section className="w-full py-16 relative">
-      <div className="flex justify-between items-center mb-8 px-8">
-        <h2 className="uppercase tracking-wide font-gibb text-4xl">{title}</h2>
-        <div className="flex gap-4">
+      <div className="flex justify-center sm:justify-between items-center mb-8 ">
+        <h2 className="uppercase tracking-wide font-gibb text-4xl ">{title}</h2>
+        {/* Кнопки на десктопе */}
+        <div className="hidden sm:flex gap-4">
           <button
             onClick={prev}
             aria-label="Previous"
@@ -68,7 +69,7 @@ export default function NewsSection({ newsItems, title }: NewsProps) {
       <div
         className={`relative ${
           visibleCount === 1 ? "overflow-hidden" : "overflow-hidden"
-        } pl-8`}
+        } `}
       >
         <div
           ref={containerRef}
@@ -104,6 +105,24 @@ export default function NewsSection({ newsItems, title }: NewsProps) {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Кнопки на мобилке под NewsItem */}
+      <div className="sm:hidden flex justify-center gap-4 mt-8 px-8">
+        <button
+          onClick={prev}
+          aria-label="Previous"
+          className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+        >
+          <ArrowLeft className="w-6 h-6" />
+        </button>
+        <button
+          onClick={next}
+          aria-label="Next"
+          className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+        >
+          <ArrowRight className="w-6 h-6" />
+        </button>
       </div>
     </section>
   );

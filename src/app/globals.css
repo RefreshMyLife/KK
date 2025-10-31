@@ -16,6 +16,7 @@
   --color-custom-red:#E40400; 
   --color-custom-gray-light:#EEEEEE; 
   --color-custom-gray-dark:#9C9C9C; 
+  --color-custom-gray-black:#5E5E5E;
   --breakpoint-xs: 120rem;
 }
 :root {
@@ -44,4 +45,14 @@ margin-right: calc(-1 * var(--layout-padding));
 }
 body {
   overflow-x: hidden;
+}
+
+/* Скрыть скроллбар */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
 }

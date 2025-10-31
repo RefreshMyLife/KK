@@ -16,8 +16,10 @@ export const NewsItem = ({ newsItem }: NewsItemProps) => {
       <div className="flex gap-4.5 flex-col justify-center items-center text-center mx-5 mt-10 mb-7">
         <span className="font-sm">{newsItem.date}</span>
         <div className="space-y-2">
-          <h4 className="text-lg ">{newsItem.nameOfTitle}</h4>
-          <h3 className="font-gibb text-2xl uppercase">{newsItem.title}</h3>
+          <h4 className="text-lg  ">{newsItem.nameOfTitle}</h4>
+          <h3 className="font-gibb text-2xl uppercase leading-none">
+            {newsItem.title}
+          </h3>
         </div>
       </div>
       <Image

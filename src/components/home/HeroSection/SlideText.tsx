@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Slide } from "./types";
-import { useEffect, useState } from "react";
 import CountdownTimer from "@/components/CountDownTimer";
 
 interface SlideTextProps {

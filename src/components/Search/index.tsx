@@ -22,7 +22,12 @@ const artworks = [
   { id: 2, name: "Композиция с арбузом", type: "artwork" },
 ];
 
-export default function SearchCommand() {
+interface SearchCommandProps {
+  className?: string;
+  inputClassName?: string;
+}
+
+export default function SearchCommand({ className, inputClassName }: SearchCommandProps) {
   const [inputValue, setInputValue] = useState("");
   const [selected, setSelected] = useState("");
 
@@ -60,13 +65,13 @@ export default function SearchCommand() {
   };
 
   return (
-    <div className="relative w-full max-w-[370px] rounded-sm  bg-custom-gray-light">
+    <div className={`relative w-full max-w-[370px] rounded-sm bg-custom-gray-light ${className || ''}`}>
       <Command className="rounded-sm  overflow-visible">
         <CommandInput
           placeholder="Андерграунд, море, лес..."
           value={inputValue}
           onValueChange={setInputValue}
-          className="whitespace-nowrap"
+          className={`whitespace-nowrap ${inputClassName || ''}`}
         />
       </Command>
 
