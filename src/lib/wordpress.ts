@@ -1,7 +1,11 @@
-const WP_API_URL = process.env.WP_API_URL;
+const WP_API_URL = process.env.WP_API_URL || process.env.NEXT_PUBLIC_WP_API_URL;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function wpGraphQL<T>(query: string, variables: any = {}): Promise<T> {
+  if (!WP_API_URL) {
+    throw new Error('WP_API_URL is not defined. Please set WP_API_URL or NEXT_PUBLIC_WP_API_URL environment variable.');
+  }
+
   const res = await fetch(`${WP_API_URL}/graphql`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -15,6 +19,10 @@ export async function wpGraphQL<T>(query: string, variables: any = {}): Promise<
 }
 
 export async function wpRest<T>(endpoint: string): Promise<T> {
+  if (!WP_API_URL) {
+    throw new Error('WP_API_URL is not defined. Please set WP_API_URL or NEXT_PUBLIC_WP_API_URL environment variable.');
+  }
+
   const url = `${WP_API_URL}/wp-json/${endpoint}`;
   console.log("Fetching:", url);
   const res = await fetch(url, { next: { revalidate: 60 } }).catch(e => {
