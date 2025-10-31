@@ -99,6 +99,7 @@ export default async function ProductPage({
       nodes: [
         {
           id: "cat-1",
+          databaseId: 1,
           name: "У Чёрного моря",
           slug: "black-sea",
           uri: "/category/black-sea",
