@@ -123,7 +123,7 @@ export default async function ProductPage({
 
   return (
     <div className="min-h-screen bg-white pt-20 lg:pt-24">
-      <div className=" mx-auto  py-8 max-w-7xl">
+      <div className="  py-8 ">
         {/* Хлебные крошки */}
         <Breadcrumbs items={breadcrumbItems} />
 

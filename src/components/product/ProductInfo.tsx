@@ -49,12 +49,12 @@ export default function ProductInfo({ product }: ProductInfoProps) {
     .join(" • ");
 
   return (
-    <div className="flex flex-col justify-between gap-12 text-center">
-      <div className="flex flex-col gap-12">
+    <div className="flex flex-col justify-around gap-6 sm:gap-12 text-center h-[100%]">
+      <div className="flex flex-col gap-8 sm:gap-12">
         <div className="flex flex-col ">
           {/* Категория/тип */}
           {product.categories?.nodes && product.categories.nodes.length > 0 && (
-            <div className="text-base text-black mb-4">
+            <div className="text-base text-black mb-2 sm:mb-4">
               «{product.categories.nodes[0].name}»
             </div>
           )}
@@ -80,7 +80,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
         )}
 
         {/* Кнопки действий */}
-        <div className="flex flex-col gap-3 mt-2">
+        <div className="flex flex-col gap-1.5 sm:gap-3 mt-2">
           <Button
             onClick={handleRequestQuote}
             size="lg"
