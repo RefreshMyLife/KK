@@ -85,8 +85,8 @@ const products = [
 
 export default async function Home() {
   const slider = await getMainSlider();
-  const { blocks, categoryMap } = await getMainPageWithCategories();
-  console.log(blocks, categoryMap, "CATEGORY");
+  //const { blocks, categoryMap } = await getMainPageWithCategories();
+  // console.log(blocks, categoryMap, "CATEGORY");
   return (
     <div className="font-sans  ">
       <div className="full-width overflow-x-hidden">
