@@ -69,7 +69,7 @@ export const Footer = () => {
             <div className="hidden sm:block">
               <Link href="/" className="inline-block mb-10">
                 <Image
-                  src="img/logo-footer.svg"
+                  src="/img/logo-footer.svg"
                   alt="Kupit Kartinu"
                   width={360}
                   height={90}
@@ -132,7 +132,7 @@ export const Footer = () => {
                     aria-label="Telegram"
                   >
                     <Image
-                      src="img/icons/social/telegram.svg"
+                      src="/img/icons/social/telegram.svg"
                       alt="telegram"
                       width={32}
                       height={32}
@@ -145,7 +145,7 @@ export const Footer = () => {
                     aria-label="VK"
                   >
                     <Image
-                      src="img/icons/social/vk.svg"
+                      src="/img/icons/social/vk.svg"
                       alt="vk"
                       width={32}
                       height={32}
@@ -158,7 +158,7 @@ export const Footer = () => {
                     aria-label="YouTube"
                   >
                     <Image
-                      src="img/icons/social/youtube.svg"
+                      src="/img/icons/social/youtube.svg"
                       alt="youtube"
                       width={32}
                       height={32}
@@ -227,7 +227,7 @@ export const Footer = () => {
             </div>
 
             <Image
-              src="img/logo-light.svg"
+              src="/img/logo-light.svg"
               alt="logo"
               width={360}
               height={90}

@@ -129,7 +129,7 @@ export const ProductCard = ({
         </div>
 
         {/* Мобильная кнопка добавления в корзину */}
-        <button
+        {/* <button
           onClick={(e) => {
             e.preventDefault();
             handleAddToCart();
@@ -153,7 +153,7 @@ export const ProductCard = ({
               <span>Добавить в корзину</span>
             </>
           )}
-        </button>
+        </button> */}
       </div>
     </div>
   );

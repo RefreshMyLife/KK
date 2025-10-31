@@ -38,87 +38,73 @@ export default function ProductInfo({ product }: ProductInfoProps) {
     }).format(price);
   };
 
+  // Формируем строку характеристик с разделителями точками
+  const characteristics = [
+    product.material,
+    product.size,
+    product.country,
+    product.year,
+  ]
+    .filter(Boolean)
+    .join(" • ");
+
   return (
-    <div className="flex flex-col gap-6">
-      {/* Категория/тип */}
-      {product.categories?.nodes && product.categories.nodes.length > 0 && (
-        <div className="text-sm text-gray-600">
-          «{product.categories.nodes[0].name}»
+    <div className="flex flex-col justify-between gap-12 text-center">
+      <div className="flex flex-col gap-12">
+        <div className="flex flex-col ">
+          {/* Категория/тип */}
+          {product.categories?.nodes && product.categories.nodes.length > 0 && (
+            <div className="text-base text-black mb-4">
+              «{product.categories.nodes[0].name}»
+            </div>
+          )}
+
+          {/* Название */}
+          <h1 className="text-3xl lg:text-4xl font-gibb leading-tight mb-3">
+            {product.title}
+          </h1>
+
+          {/* Цена */}
+          {product.price && (
+            <div className="text-2xl lg:text-2xl font-gibb">
+              {formatPrice(product.price)} ₽
+            </div>
+          )}
         </div>
-      )}
 
-      {/* Название */}
-      <h1 className="text-3xl lg:text-4xl font-bold">{product.title}</h1>
+        {/* Характеристики в одну строку с точками */}
+        {characteristics && (
+          <div className="text-sm text-custom-gray-dark ">
+            {characteristics}
+          </div>
+        )}
 
-      {/* Цена */}
-      {product.price && (
-        <div className="text-2xl lg:text-3xl font-bold">
-          {formatPrice(product.price)} ₽
+        {/* Кнопки действий */}
+        <div className="flex flex-col gap-3 mt-2">
+          <Button
+            onClick={handleRequestQuote}
+            size="lg"
+            className="w-full rounded-none text-sm py-5 bg-custom-gray-light hover:bg-gray-50"
+          >
+            Оставить заявку
+          </Button>
+          <Button
+            onClick={handleAddToCart}
+            size="lg"
+            className="w-full rounded-none text-sm py-5 bg-black hover:bg-gray-800 text-white"
+          >
+            Добавить в корзину
+          </Button>
         </div>
-      )}
-
-      {/* Характеристики */}
-      {(product.material || product.size || product.country || product.year) && (
-        <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-600">
-          {product.material && <span>{product.material}</span>}
-          {product.size && <span>{product.size}</span>}
-          {product.country && <span>{product.country}</span>}
-          {product.year && <span>{product.year}</span>}
-        </div>
-      )}
-
-      {/* Кнопки действий */}
-      <div className="flex flex-col gap-3">
-        <Button
-          onClick={handleRequestQuote}
-          variant="outline"
-          size="lg"
-          className="w-full text-base py-6"
-        >
-          Оставить заявку
-        </Button>
-        <Button
-          onClick={handleAddToCart}
-          size="lg"
-          className="w-full text-base py-6 bg-black hover:bg-gray-800"
-        >
-          Добавить в корзину
-        </Button>
       </div>
 
-      {/* Дополнительная информация */}
-      {(product.excerpt || product.artist) && (
-        <div className="border-t pt-6 space-y-4">
-          {product.artist && (
-            <div>
-              <h3 className="text-sm font-medium text-gray-500 mb-1">
-                Художник
-              </h3>
-              <p className="text-base">{product.artist}</p>
-            </div>
-          )}
-
-          {product.excerpt && (
-            <div>
-              <h3 className="text-sm font-medium text-gray-500 mb-1">
-                Описание
-              </h3>
-              <div
-                className="text-sm text-gray-700"
-                dangerouslySetInnerHTML={{ __html: product.excerpt }}
-              />
-            </div>
-          )}
-        </div>
-      )}
-
       {/* Теги/особенности */}
-      {product.categories?.nodes && product.categories.nodes.length > 1 && (
-        <div className="border-t pt-6">
-          <h3 className="text-sm font-medium text-gray-500 mb-2">
+      {product.categories?.nodes && product.categories.nodes.length > 0 && (
+        <div className="text-center">
+          <div className="text-sm text-black">
             Советская живопись и графика · Пейзаж
-          </h3>
-          <p className="text-sm text-gray-600">Морской пейзаж</p>
+          </div>
+          <div className="text-sm text-black">Морской пейзаж</div>
         </div>
       )}
     </div>
