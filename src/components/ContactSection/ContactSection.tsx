@@ -20,7 +20,7 @@ export default function ContactSection() {
 
   return (
     <div className="relative sm:flex items-center justify-end p-4 md:p-8 hidden ">
-      <div className="absolute w-[57px] h-[57px] z-[2] left-4.5 top-6 hidden sm:block">
+      <div className=" absolute w-[57px] h-[57px] z-[2] left-10 top-6 hidden sm:block">
         <Image
           src={"/img/logo-light.svg"}
           alt="light-logo"

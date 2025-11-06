@@ -17,7 +17,7 @@
   --color-custom-gray-light:#EEEEEE; 
   --color-custom-gray-dark:#9C9C9C; 
   --color-custom-gray-black:#5E5E5E;
-  --breakpoint-xs: 120rem;
+  --breakpoint-xs: 450px;
 }
 :root {
   --layout-padding: 30px;

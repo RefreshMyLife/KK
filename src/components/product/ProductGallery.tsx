@@ -71,14 +71,14 @@ export default function ProductGallery({
       {/* Модальное окно с изображением */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent
-          className="!max-w-[95vw] !w-full !h-[100%] p-0 bg-white border-none !rounded-none"
+          className="!max-w-[95vw] !max-h-[95vh] !w-auto !h-auto p-0 bg-white border-none"
           showCloseButton={false}
         >
           <DialogTitle className="sr-only">
             {selectedImage.altText || title}
           </DialogTitle>
 
-          <div className="relative w-full h-full flex items-center justify-center bg-white">
+          <div className="relative w-[95vw] h-[95vh] flex items-center justify-center bg-white">
             <Image
               src={selectedImage.sourceUrl || "/img/placeholder.jpg"}
               alt={selectedImage.altText || title}

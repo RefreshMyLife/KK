@@ -1,8 +1,10 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Product } from "@/app/types";
 import { useCartStore } from "@/store/useCartStore";
+import RequestQuoteModal from "./RequestQuoteModal";
+import { Check } from "lucide-react";
 
 interface ProductInfoProps {
   product: Product;
@@ -10,10 +12,19 @@ interface ProductInfoProps {
 
 export default function ProductInfo({ product }: ProductInfoProps) {
   const addItem = useCartStore((state) => state.addItem);
+  const isItemInCart = useCartStore((state) => state.isItemInCart(product.id));
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // Предотвращаем hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleAddToCart = () => {
-    // Добавляем товар в корзину
-    addItem({
+    // Пытаемся добавить товар в корзину
+    const success = addItem({
       id: product.id,
       title: product.title,
       subtitle: product.categories?.nodes?.[0]?.name || "",
@@ -24,12 +35,18 @@ export default function ProductInfo({ product }: ProductInfoProps) {
       year: product.year || "",
       imageUrl: product.featuredImage?.node?.sourceUrl,
     });
+
+    // Показываем визуальную обратную связь только если товар был добавлен
+    if (success) {
+      setIsAdded(true);
+      setTimeout(() => {
+        setIsAdded(false);
+      }, 2000);
+    }
   };
 
   const handleRequestQuote = () => {
-    // TODO: Открыть модальное окно заявки
-    console.log("Оставить заявку для товара:", product.id);
-    alert("Форма заявки будет реализована позже");
+    setIsQuoteModalOpen(true);
   };
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("ru-RU", {
@@ -91,9 +108,28 @@ export default function ProductInfo({ product }: ProductInfoProps) {
           <Button
             onClick={handleAddToCart}
             size="lg"
-            className="w-full rounded-none text-sm py-5 bg-black hover:bg-gray-800 text-white"
+            disabled={mounted && (isItemInCart || isAdded)}
+            className={`w-full rounded-none text-sm py-5 transition-colors ${
+              mounted && isItemInCart
+                ? "bg-gray-400 cursor-not-allowed text-white"
+                : isAdded
+                ? "bg-green-600 hover:bg-green-600 text-white"
+                : "bg-black hover:bg-gray-800 text-white"
+            }`}
           >
-            Добавить в корзину
+            {mounted && isItemInCart ? (
+              <span className="flex items-center gap-2 justify-center">
+                <Check className="w-5 h-5" />
+                Уже в корзине
+              </span>
+            ) : isAdded ? (
+              <span className="flex items-center gap-2 justify-center">
+                <Check className="w-5 h-5" />
+                Добавлено в корзину
+              </span>
+            ) : (
+              "Добавить в корзину"
+            )}
           </Button>
         </div>
       </div>
@@ -107,6 +143,13 @@ export default function ProductInfo({ product }: ProductInfoProps) {
           <div className="text-sm text-black">Морской пейзаж</div>
         </div>
       )}
+
+      {/* Модальное окно заявки */}
+      <RequestQuoteModal
+        open={isQuoteModalOpen}
+        onOpenChange={setIsQuoteModalOpen}
+        productTitle={product.title}
+      />
     </div>
   );
 }

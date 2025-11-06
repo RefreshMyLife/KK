@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.className}>
-      <body className={`layout-wrapper antialiased`}>
+      <body className={` antialiased`}>
         <Header />
         {children}
         <div className="full-width overflow-x-hidden">

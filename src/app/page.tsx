@@ -1,6 +1,6 @@
 import { AboutSection } from "@/components/home/AboutSection/AboutSection";
 import { AdvantagesSection } from "@/components/home/AdvantagesSection/AdvantagesSection";
-import ContactSection from "@/components/home/ContactSection/ContactSection";
+import ContactSection from "@/components/ContactSection/ContactSection";
 import HeroSection from "@/components/home/HeroSection/HeroSection";
 import NewsSection from "@/components/home/NewsSection/NewsSection";
 import ProductSection from "@/components/home/ProductSection/ProductSections";
@@ -88,7 +88,7 @@ export default async function Home() {
   //const { blocks, categoryMap } = await getMainPageWithCategories();
   // console.log(blocks, categoryMap, "CATEGORY");
   return (
-    <div className="font-sans  ">
+    <div>
       <div className="full-width overflow-x-hidden">
         <HeroSection />
       </div>

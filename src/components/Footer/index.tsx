@@ -47,15 +47,16 @@ export const Footer = () => {
             <div className="flex gap-0 overflow-hidden">
               <input
                 type="email"
+                name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Введите Email"
-                className="flex-1 bg-zinc-800  text-white px-2  sm:px-6 py-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="flex-1 bg-zinc-800  text-white px-1  sm:px-6 py-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
               />
               <button
                 type="submit"
-                className="bg-zinc-700 hover:bg-zinc-600 text-white px-2  sm:px-8 py-4 transition-colors font-medium"
+                className="bg-zinc-700 hover:bg-zinc-600 text-white px-1  sm:px-8 py-4 transition-colors font-medium"
               >
                 {isSubmitted ? "✓ Отправлено" : "Отправить"}
               </button>

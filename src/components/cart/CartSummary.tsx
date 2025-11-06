@@ -1,80 +1,113 @@
 "use client";
 
-import Link from "next/link";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 interface CartSummaryProps {
   totalPrice: number;
   totalItems: number;
-  onClearCart: () => void;
 }
 
-export const CartSummary = ({
-  totalPrice,
-  totalItems,
-  onClearCart,
-}: CartSummaryProps) => {
+export const CartSummary = ({ totalPrice, totalItems }: CartSummaryProps) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
+
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat("ru-RU", {
+      style: "decimal",
+      minimumFractionDigits: 0,
+    }).format(price);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // TODO: Отправка заявки на сервер
+    console.log("Отправка заявки:", formData);
+    // Сброс формы
+    setFormData({ name: "", email: "", phone: "" });
+  };
+
   return (
-    <div className="bg-gray-50 p-6 rounded-lg sticky top-4">
-      <h2 className="text-2xl font-gibb mb-6">Итого</h2>
+    <div className="bg-white   p-6  pt-0 rounded-none sticky top-24">
+      {/* Итого */}
+      <div className="mb-8">
+        <h2 className="text-2xl font-normal mb-2 uppercase">Итого</h2>
 
-      <div className="space-y-4 mb-6">
-        <div className="flex justify-between text-base">
-          <span className="text-custom-gray-dark">Товаров:</span>
-          <span className="font-medium">{totalItems}</span>
-        </div>
+        <div className="flex justify-between">
+          <div className="flex justify-between text-lg">
+            <span className="">{totalItems} товара</span>
+          </div>
 
-        <div className="flex justify-between text-base">
-          <span className="text-custom-gray-dark">Стоимость товаров:</span>
-          <span className="font-medium">
-            {totalPrice.toLocaleString("ru-RU")} ₽
-          </span>
-        </div>
-
-        <div className="border-t border-gray-200 pt-4">
-          <div className="flex justify-between text-xl font-medium">
-            <span>Общая сумма:</span>
-            <span>{totalPrice.toLocaleString("ru-RU")} ₽</span>
+          <div className="">
+            <span>{formatPrice(totalPrice)} ₽</span>
           </div>
         </div>
       </div>
 
-      <div className="space-y-3">
-        <Link
-          href="/checkout"
-          className="block w-full bg-black text-white text-center py-4 rounded-lg hover:bg-gray-800 transition-colors font-medium"
-        >
-          Оформить заказ
-        </Link>
+      {/* Форма заявки */}
+      <div className="border-t border-custom-gray-dark pt-8">
+        <h3 className="text-[24px] font-gibb mb-5 text-center uppercase leading-normal">
+          Для покупки
+          <br />
+          оставьте заявку
+        </h3>
 
-        <Link
-          href="/"
-          className="block w-full bg-white border border-gray-300 text-center py-4 rounded-lg hover:bg-gray-50 transition-colors font-medium"
-        >
-          Продолжить покупки
-        </Link>
+        <form onSubmit={handleSubmit} className="space-y-2">
+          {/* Поле ФИО */}
+          <Input
+            type="text"
+            placeholder="ФИО"
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            required
+            className="h-12 rounded-none  border-none  bg-[#F3F3F3] px-4 text-sm placeholder:text-gray-500"
+          />
 
-        <button
-          onClick={onClearCart}
-          className="w-full text-red-600 hover:text-red-700 py-2 text-sm transition-colors"
-        >
-          Очистить корзину
-        </button>
-      </div>
+          {/* Поле E-mail */}
+          <Input
+            type="email"
+            placeholder="E-mail"
+            value={formData.email}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
+            required
+            className="h-12  border-none rounded-none bg-[#F3F3F3] px-4 text-sm placeholder:text-gray-500"
+          />
 
-      {/* Дополнительная информация */}
-      <div className="mt-6 pt-6 border-t border-gray-200 text-sm text-custom-gray-dark space-y-2">
-        <p className="flex items-start gap-2">
-          <span>✓</span>
-          <span>Бесплатная доставка по Москве</span>
-        </p>
-        <p className="flex items-start gap-2">
-          <span>✓</span>
-          <span>Гарантия подлинности произведений</span>
-        </p>
-        <p className="flex items-start gap-2">
-          <span>✓</span>
-          <span>Экспертиза и сертификаты</span>
-        </p>
+          {/* Поле Номер телефона */}
+          <Input
+            type="tel"
+            placeholder="Номер телефона"
+            value={formData.phone}
+            onChange={(e) =>
+              setFormData({ ...formData, phone: e.target.value })
+            }
+            required
+            className="h-12  border-none rounded-none bg-[#F3F3F3] px-4 text-sm placeholder:text-gray-500"
+          />
+
+          {/* Кнопка отправки */}
+          <Button
+            type="submit"
+            className="w-full h-12 rounded-none bg-black hover:bg-gray-800 text-white text-sm font-normal mt-6"
+          >
+            Отправить
+          </Button>
+
+          {/* Текст согласия */}
+          <p className="text-[11px] text-gray-400 text-center mt-4 leading-relaxed">
+            Нажимая кнопку &quot;Отправить&quot; вы соглашаетесь на обработку
+            персональных данных в соответствии с{" "}
+            <a href="#" className="underline hover:text-gray-600">
+              пользовательским соглашением
+            </a>
+          </p>
+        </form>
       </div>
     </div>
   );

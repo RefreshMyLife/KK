@@ -5,16 +5,19 @@ import Image from "next/image";
 import SearchCommand from "../Search";
 import { CartButton } from "./CartButton";
 import Link from "next/link";
+import { useCartStore } from "@/store/useCartStore";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [mounted, setMounted] = useState(false);
+  const totalItems = useCartStore((state) => state.getTotalItems());
 
   const navLinks = [
-    { name: "КАТАЛОГ", href: "#" },
-    { name: "АУКЦИОН", href: "#" },
+    { name: "КАТАЛОГ", href: "/catalog" },
+    { name: "АУКЦИОН", href: "/auctions" },
     { name: "О ПРОЕКТЕ", href: "#" },
     { name: "НОВОСТИ", href: "#" },
     { name: "КОНТАКТЫ", href: "#" },
@@ -27,6 +30,11 @@ export default function Header() {
       setIsClosing(false);
     }, 300); // Длительность анимации
   };
+
+  // Предотвращаем hydration mismatch для счётчика корзины
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,13 +74,13 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-5">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
                 className="text-sm font-regular text-gray-700 hover:text-gray-900 transition-colors"
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -82,14 +90,10 @@ export default function Header() {
               <SearchCommand />
             </div>
 
-            <button className="hidden md:block text-gray-700 hover:text-gray-900 transition-colors">
-              <Image
-                src={"/img/icons/shopping-cart.svg"}
-                width={32}
-                height={32}
-                alt={""}
-              />
-            </button>
+            {/* Cart Button with counter */}
+            <div className="hidden md:block">
+              <CartButton />
+            </div>
 
             <button className="hidden md:block text-gray-700 hover:text-gray-900 transition-colors">
               <Image
@@ -169,6 +173,11 @@ export default function Header() {
                   onClick={handleCloseMobileMenu}
                 >
                   КОРЗИНА
+                  {mounted && totalItems > 0 && (
+                    <span className="bg-black text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
+                      {totalItems > 99 ? "99+" : totalItems}
+                    </span>
+                  )}
                 </a>
 
                 {/* User Login Link - Mobile only */}
