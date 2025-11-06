@@ -18,8 +18,11 @@ export const SlideText = ({
   initialSeconds,
   showTimer = false,
 }: SlideTextProps) => {
-  const ButtonWrapper = slide.buttonLink ? Link : "div";
-  const buttonProps = slide.buttonLink ? { href: slide.buttonLink } : {};
+  const buttonElement = (
+    <Button className="bg-white text-gray-900 hover:bg-gray-100 border-0 px-8 py-6 text-base animate-fade-in-up hover:scale-105 transition-transform duration-300">
+      {slide.buttonText}
+    </Button>
+  );
 
   return (
     <div className="flex flex-col items-center justify-around 2xl:mt-10 2xl:mb-30 gap-10 lg:gap-25 text-center">
@@ -48,11 +51,13 @@ export const SlideText = ({
         )}
       </div>
 
-      <ButtonWrapper {...buttonProps}>
-        <Button className="bg-white text-gray-900 hover:bg-gray-100 border-0 px-8 py-6 text-base animate-fade-in-up hover:scale-105 transition-transform duration-300">
-          {slide.buttonText}
-        </Button>
-      </ButtonWrapper>
+      {slide.buttonLink ? (
+        <Link href={slide.buttonLink}>
+          {buttonElement}
+        </Link>
+      ) : (
+        buttonElement
+      )}
 
       {(slide.infoTitle || slide.info) && (
         <div className="bottom-6 left-8 text-custom-gray-dark text-xs z-10 animate-fade-in">
