@@ -3,8 +3,8 @@
 import { useState, useMemo } from "react";
 import { Post } from "@/app/types/post";
 import CatalogFilters from "./CatalogFilters";
-import { ProductCard } from "@/components/ProductCard";
-import Pagination from "./Pagination";
+import { ProductCard } from "@/components/product/ProductCard";
+import Pagination from "@/components/shared/Pagination";
 
 interface Category {
   id: string;

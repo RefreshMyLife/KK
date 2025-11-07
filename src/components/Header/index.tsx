@@ -18,9 +18,10 @@ export default function Header() {
   const navLinks = [
     { name: "КАТАЛОГ", href: "/catalog" },
     { name: "АУКЦИОН", href: "/auctions" },
+    { name: "ХУДОЖНИКИ", href: "/artists" },
     { name: "О ПРОЕКТЕ", href: "#" },
-    { name: "НОВОСТИ", href: "#" },
-    { name: "КОНТАКТЫ", href: "#" },
+    { name: "НОВОСТИ", href: "/news" },
+    { name: "КОНТАКТЫ", href: "/contacts" },
   ];
 
   const handleCloseMobileMenu = () => {

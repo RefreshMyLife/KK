@@ -4,7 +4,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { ShoppingCart, Check } from "lucide-react";
-import CountdownTimer from "../CountDownTimer";
+import CountdownTimer from "@/components/CountDownTimer";
 import { useCartStore } from "@/store/useCartStore";
 import Link from "next/link";
 

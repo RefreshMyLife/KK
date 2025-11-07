@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { ProductCard } from "@/components/ProductCard";
+import { ProductCard } from "@/components/product/ProductCard";
 
 interface Product {
   title: string;

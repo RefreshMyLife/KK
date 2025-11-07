@@ -52,15 +52,15 @@ export default function Pagination({
   const pages = getPageNumbers();
 
   return (
-    <div className="flex items-center justify-center gap-3 mt-12 mb-8">
+    <div className="flex items-center justify-center gap-6 mt-12 mb-8">
       {/* Кнопка "Назад" */}
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-gray-100 transition-colors"
+        className="flex items-center justify-center w-12 h-12 rounded-full text-gray-900 hover:bg-gray-50 disabled:text-gray-300 disabled:cursor-not-allowed disabled:hover:bg-transparent transition-colors"
         aria-label="Предыдущая страница"
       >
-        <ChevronLeft className="w-5 h-5" />
+        <ChevronLeft className="w-6 h-6" />
       </button>
 
       {/* Номера страниц */}
@@ -69,7 +69,7 @@ export default function Pagination({
           return (
             <span
               key={`ellipsis-${index}`}
-              className="flex items-center justify-center w-10 h-10 text-gray-400"
+              className="flex items-center justify-center w-10 h-10 text-gray-300"
             >
               ...
             </span>
@@ -83,10 +83,10 @@ export default function Pagination({
           <button
             key={pageNumber}
             onClick={() => onPageChange(pageNumber)}
-            className={`flex items-center justify-center w-10 h-10 rounded-full text-[15px] font-normal transition-colors ${
+            className={`flex items-center justify-center w-10 h-10 text-lg transition-colors ${
               isActive
-                ? "bg-gray-900 text-white"
-                : "bg-transparent text-gray-400 hover:text-gray-600"
+                ? "text-gray-900 font-medium"
+                : "text-gray-300 hover:text-gray-600"
             }`}
             aria-label={`Страница ${pageNumber}`}
             aria-current={isActive ? "page" : undefined}
@@ -100,10 +100,10 @@ export default function Pagination({
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-gray-100 transition-colors"
+        className="flex items-center justify-center w-12 h-12 rounded-full text-gray-900 hover:bg-gray-50 disabled:text-gray-300 disabled:cursor-not-allowed disabled:hover:bg-transparent transition-colors"
         aria-label="Следующая страница"
       >
-        <ChevronRight className="w-5 h-5" />
+        <ChevronRight className="w-6 h-6" />
       </button>
     </div>
   );

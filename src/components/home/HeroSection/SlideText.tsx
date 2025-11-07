@@ -27,7 +27,7 @@ export const SlideText = ({
         <p className="text-sm uppercase tracking-wider opacity-80 animate-fade-in">
           {slide.subtitle}
         </p>
-        <h1 className=" text-center  uppercase text-[clamp(44px,4vw,72px)]  leading-none font-gibb  whitespace-pre-line animate-fade-in-up">
+        <h1 className=" text-center  uppercase text-[clamp(44px,4vw,72px)]  max-w-[460px] leading-none font-gibb  whitespace-pre-line animate-fade-in-up">
           {slide.title}
         </h1>
         <span className="text-white text-lg animate-fade-in">
