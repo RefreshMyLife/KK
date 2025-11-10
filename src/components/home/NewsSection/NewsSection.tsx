@@ -2,7 +2,7 @@
 
 import { useState, useRef, useLayoutEffect } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { NewsItem } from "@/components/shared/NewsItem";
+import { NewsItem } from "@/components/ui/NewsItem";
 
 interface News {
   title: string;

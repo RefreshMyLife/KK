@@ -19,7 +19,7 @@ export const Footer = () => {
     }
   };
   return (
-    <footer className="relative sm:bg-black text-lg text-custom-gray-dark pt-7.5 px-4 md:px-7.5 pb-8">
+    <footer className="  relative sm:bg-black text-lg text-custom-gray-dark pt-7.5 pb-8">
       <div className=" sm:hidden absolute inset-0 z-0">
         <Image
           src={"/img/contact/bg.png"}
@@ -30,7 +30,7 @@ export const Footer = () => {
         />
       </div>
 
-      <div className="relative z-10 p-4 bg-black">
+      <div className="relative z-10 bg-black layout-wrapper ">
         <div className=" relative sm:hidden flex flex-col bg-black justify-between  z-10">
           <h2 className="text-4xl text-white  font-gibb mb-[6px]">
             ОСТАВАЙТЕСЬ В КУРСЕ!
@@ -129,7 +129,7 @@ export const Footer = () => {
                 <div className="flex gap-3 mt-8 mb-3 sm:my-8">
                   <Link
                     href="#"
-                    className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 hover:scale-110 transition-all duration-300 ease-out"
+                    className="w-10 h-10 flex items-center justify-center  hover:scale-110 transition-all duration-300 ease-out"
                     aria-label="Telegram"
                   >
                     <Image
@@ -137,33 +137,33 @@ export const Footer = () => {
                       alt="telegram"
                       width={32}
                       height={32}
-                      className="w-auto h-auto transition-transform duration-300"
+                      className=" transition-transform duration-300"
                     />
                   </Link>
                   <Link
                     href="#"
-                    className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 hover:scale-110 transition-all duration-300 ease-out"
+                    className="w-10 h-10 flex items-center justify-center   hover:scale-110 transition-all duration-300 ease-out"
                     aria-label="VK"
                   >
                     <Image
                       src="/img/icons/social/vk.svg"
                       alt="vk"
-                      width={32}
+                      width={33}
                       height={32}
-                      className="w-auto h-auto transition-transform duration-300"
+                      className=" transition-transform duration-300"
                     />
                   </Link>
                   <Link
                     href="#"
-                    className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 hover:scale-110 transition-all duration-300 ease-out"
+                    className="w-10 h-10 flex items-center justify-center   hover:scale-110 transition-all duration-300 ease-out"
                     aria-label="YouTube"
                   >
                     <Image
                       src="/img/icons/social/youtube.svg"
                       alt="youtube"
-                      width={32}
+                      width={43}
                       height={32}
-                      className="w-auto h-auto transition-transform duration-300"
+                      className="transition-transform duration-300"
                     />
                   </Link>
                 </div>

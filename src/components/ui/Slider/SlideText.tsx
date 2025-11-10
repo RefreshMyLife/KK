@@ -25,9 +25,9 @@ export const SlideText = ({
   );
 
   return (
-    <div className="flex flex-col items-center justify-around 2xl:mt-10 2xl:mb-30 gap-10 lg:gap-25 text-center">
+    <div className="flex flex-col items-center justify-around 2xl:mt-10 2xl:mb-30 gap-10 lg:gap-25 text-center w-full">
       <div
-        className="text-white z-10 flex gap-4 flex-col justify-center items-center text-center"
+        className="text-white flex gap-4 flex-col justify-center items-center text-center"
         style={{
           animation: isAnimating
             ? `slideIn${direction === "right" ? "Left" : "Right"} 0.7s ease-out`
@@ -51,16 +51,16 @@ export const SlideText = ({
         )}
       </div>
 
-      {slide.buttonLink ? (
-        <Link href={slide.buttonLink}>
-          {buttonElement}
-        </Link>
-      ) : (
-        buttonElement
-      )}
+      <div>
+        {slide.buttonLink ? (
+          <Link href={slide.buttonLink}>{buttonElement}</Link>
+        ) : (
+          buttonElement
+        )}
+      </div>
 
       {(slide.infoTitle || slide.info) && (
-        <div className="bottom-6 left-8 text-custom-gray-dark text-xs z-10 animate-fade-in">
+        <div className="bottom-6 left-8 text-custom-gray-dark text-xs animate-fade-in">
           {slide.infoTitle && <span>{slide.infoTitle}</span>}
           <p className="text-white">{slide.info}</p>
         </div>

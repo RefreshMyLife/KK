@@ -13,7 +13,7 @@ ContentSlider - это новый вариант слайдера с текст�
 ## Пример использования:
 
 ```tsx
-import { ContentSlider } from "@/components/shared/Slider";
+import { ContentSlider } from "@/components/ui/Slider";
 
 // Данные для слайдов
 const slides = [

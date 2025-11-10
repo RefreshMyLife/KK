@@ -4,8 +4,10 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import SearchCommand from "../Search";
 import { CartButton } from "./CartButton";
+import { FavoritesButton } from "./FavoritesButton";
 import Link from "next/link";
 import { useCartStore } from "@/store/useCartStore";
+import { useFavoritesStore } from "@/store/useFavoritesStore";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -14,12 +16,13 @@ export default function Header() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [mounted, setMounted] = useState(false);
   const totalItems = useCartStore((state) => state.getTotalItems());
+  const totalFavorites = useFavoritesStore((state) => state.getTotalItems());
 
   const navLinks = [
     { name: "КАТАЛОГ", href: "/catalog" },
     { name: "АУКЦИОН", href: "/auctions" },
     { name: "ХУДОЖНИКИ", href: "/artists" },
-    { name: "О ПРОЕКТЕ", href: "#" },
+    { name: "О ПРОЕКТЕ", href: "/#about" },
     { name: "НОВОСТИ", href: "/news" },
     { name: "КОНТАКТЫ", href: "/contacts" },
   ];
@@ -96,24 +99,20 @@ export default function Header() {
               <CartButton />
             </div>
 
-            <button className="hidden md:block text-gray-700 hover:text-gray-900 transition-colors">
-              <Image
-                src={"/img/icons/heart.svg"}
-                width={32}
-                height={32}
-                alt={""}
-              />
-            </button>
+            {/* Favorites Button with counter */}
+            <div className="hidden md:block">
+              <FavoritesButton />
+            </div>
 
             {/* User Icon - Desktop only */}
-            <button className="hidden md:block text-gray-700 hover:text-gray-900 transition-colors">
+            <Link href="/profile" className="hidden md:block text-gray-700 hover:text-gray-900 transition-colors">
               <Image
                 src={"/img/icons/user.svg"}
                 width={32}
                 height={32}
-                alt={""}
+                alt={"Профиль"}
               />
-            </button>
+            </Link>
 
             {/* Mobile Menu Toggle */}
             <button
@@ -153,7 +152,7 @@ export default function Header() {
                 </div>
 
                 {navLinks.map((link, index) => (
-                  <a
+                  <Link
                     key={link.name}
                     href={link.href}
                     className=" font-medium  hover:text-gray-900 transition-colors animate-in slide-in-from-left duration-300"
@@ -161,13 +160,13 @@ export default function Header() {
                     onClick={handleCloseMobileMenu}
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
 
               <div className=" mb-40 flex flex-col  space-y-6">
                 {/* Cart Link - Mobile only */}
-                <a
+                <Link
                   href="/cart"
                   className=" font-medium text-gray-700 hover:text-gray-900 transition-colors animate-in slide-in-from-left duration-300  flex items-center gap-2"
                   style={{ animationDelay: `${navLinks.length * 50}ms` }}
@@ -179,17 +178,32 @@ export default function Header() {
                       {totalItems > 99 ? "99+" : totalItems}
                     </span>
                   )}
-                </a>
+                </Link>
+
+                {/* Favorites Link - Mobile only */}
+                <Link
+                  href="/favorites"
+                  className=" font-medium text-gray-700 hover:text-gray-900 transition-colors animate-in slide-in-from-left duration-300  flex items-center gap-2"
+                  style={{ animationDelay: `${(navLinks.length + 1) * 50}ms` }}
+                  onClick={handleCloseMobileMenu}
+                >
+                  ИЗБРАННОЕ
+                  {mounted && totalFavorites > 0 && (
+                    <span className="bg-black text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
+                      {totalFavorites > 99 ? "99+" : totalFavorites}
+                    </span>
+                  )}
+                </Link>
 
                 {/* User Login Link - Mobile only */}
-                <a
-                  href="#"
+                <Link
+                  href="/profile"
                   className=" font-medium hover:text-gray-900 transition-colors animate-in slide-in-from-left duration-300   flex items-center gap-2"
-                  style={{ animationDelay: `${navLinks.length * 50}ms` }}
+                  style={{ animationDelay: `${(navLinks.length + 2) * 50}ms` }}
                   onClick={handleCloseMobileMenu}
                 >
                   ВОЙТИ В АККАУНТ
-                </a>
+                </Link>
               </div>
             </nav>
           </div>

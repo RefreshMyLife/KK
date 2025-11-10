@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Slide } from "./types";
 import CountdownTimer from "@/components/CountDownTimer";
-
+import Image from "next/image";
 interface SlideTextProps {
   slide: Slide;
   isAnimating: boolean;
@@ -45,6 +45,13 @@ export const SlideText = ({
         {slide.infoTitle ?? <span>{slide.infoTitle}</span>}
         <p className="text-white">{slide.info}</p>
       </div>
+
+      <Image
+        src={"/img/icons/user.svg"}
+        width={32}
+        height={32}
+        alt={"Профиль"}
+      />
     </div>
   );
 };

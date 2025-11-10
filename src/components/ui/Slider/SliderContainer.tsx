@@ -4,6 +4,7 @@ import { SlideText } from "./SlideText";
 import { SlideImage } from "./SlideImage";
 import { SlideNavigation } from "./SlideNavigation";
 import { useSlider } from "./hooks/useSlider";
+import Image from "next/image";
 import "./animations.css";
 
 export default function HeroSlider({
@@ -48,13 +49,28 @@ export default function HeroSlider({
               isAnimating={isAnimating}
             />
           </div>
-          <div className="lg:order-1 mt-6 lg:mt-0 h-full flex justify-center">
-            <SlideText
-              slide={slide}
-              isAnimating={isAnimating}
-              direction={direction}
-              initialSeconds={5600}
-            />
+          <div className="relative lg:order-1 mt-6 lg:mt-0 h-full flex justify-center items-center">
+            {/* Фоновое изображение для всего блока SlideText */}
+            {/* <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <Image
+                src={"/img/hero-slider/decorate.svg"}
+                width={800}
+                height={800}
+                alt=""
+                className="w-full h-full max-w-full max-h-full object-contain"
+                priority
+              />
+            </div> */}
+
+            {/* Контент SlideText поверх фона */}
+            <div className="relative z-10 w-full">
+              <SlideText
+                slide={slide}
+                isAnimating={isAnimating}
+                direction={direction}
+                initialSeconds={5600}
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import HeroSlider from "@/components/shared/Slider";
+import HeroSlider from "@/components/ui/Slider";
 import { slides } from "./slidesData";
 
 export default function HeroSection() {

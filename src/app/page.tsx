@@ -88,7 +88,7 @@ export default async function Home() {
   //const { blocks, categoryMap } = await getMainPageWithCategories();
   // console.log(blocks, categoryMap, "CATEGORY");
   return (
-    <div>
+    <div className="layout-wrapper">
       <div className="full-width overflow-x-hidden">
         <HeroSection />
       </div>

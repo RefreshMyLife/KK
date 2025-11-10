@@ -1,4 +1,4 @@
-import { Slide } from "@/components/shared/Slider/types";
+import { Slide } from "@/components/ui/Slider/types";
 
 export const auctionSlides: Slide[] = [
   {

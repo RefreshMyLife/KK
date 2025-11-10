@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { NewsItem } from "@/components/shared/NewsItem";
-import Pagination from "@/components/shared/Pagination";
+import { NewsItem } from "@/components/ui/NewsItem";
+import Pagination from "@/components/ui/pagination";
 import { NewsItemData } from "@/data/mockNews";
 
 interface NewsClientProps {

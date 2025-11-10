@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import AuctionList from "@/components/auction/AuctionList";
 import { mockAuctions, mockAuctionCategories } from "@/data/mockAuctions";
 import { auctionSlides } from "@/data/auctionSlides";
-import ContentSlider from "@/components/shared/Slider/ContentSlider";
+import ContentSlider from "@/components/ui/Slider/ContentSlider";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import ContactSection from "@/components/ContactSection/ContactSection";
 

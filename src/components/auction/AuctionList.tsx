@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import { Auction } from "@/app/types/auction";
 import { ProductCard } from "@/components/product/ProductCard";
 import CatalogFilters from "@/components/catalog/CatalogFilters";
-import Pagination from "@/components/shared/Pagination";
+import Pagination from "@/components/ui/pagination";
 
 interface Category {
   id: string;

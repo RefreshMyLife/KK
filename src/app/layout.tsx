@@ -26,7 +26,7 @@ export default function RootLayout({
       <body className={` antialiased`}>
         <Header />
         {children}
-        <div className="full-width overflow-x-hidden">
+        <div className=" overflow-x-hidden">
           <Footer />
         </div>
       </body>
