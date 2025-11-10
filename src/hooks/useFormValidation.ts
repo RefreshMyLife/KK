@@ -118,7 +118,7 @@ export function useFormValidation(initialData: FormData) {
   };
 
   const isFormValid = (hasImages: boolean): boolean => {
-    return (
+    return Boolean(
       formData.title.trim() &&
       formData.artist &&
       formData.genre &&
