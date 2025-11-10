@@ -238,16 +238,16 @@ export const Footer = () => {
             <div className=" flex flex-col md:flex-row justify-between items-start md:items-center gap- text-xs">
               <div className="flex flex-col gap-1.5  ">
                 <Link
-                  href="#"
+                  href="/privacy-policy"
                   className="hover:text-white transition text-base text-[#5E5E5E]"
                 >
                   Политика конфиденциальности
                 </Link>
                 <Link
-                  href="#"
+                  href="/cookies-policy"
                   className="hover:text-white transition text-base text-[#5E5E5E]"
                 >
-                  Условия использования материалов сайта
+                  Обработка куки-файлов (Cookies)
                 </Link>
                 <div className="sm:hidden text-base sm:text-xs text-[#5E5E5E]">
                   <p>
