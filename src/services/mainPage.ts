@@ -1,86 +1,12 @@
-import { SliderItem, WPPageResponse, PageBlock, MainPageBlock, MainPageData } from '@/app/types';
-import { wpGraphQL, wpRest } from '@/lib/wordpress';
+import { MainPageBlock, MainPageData } from '@/app/types';
+import { wpGraphQL } from '@/lib/wordpress';
 import { GET_MAIN_PAGE_BLOCKS } from './graphql';
 import { getCategoriesByIds } from './services';
 
 const HOME_PAGE_ID = 117;
 
 // ============================================
-// REST API Functions
-// ============================================
-
-/**
- * Получает слайдер главной страницы из WordPress REST API
- * @returns Массив элементов слайдера или пустой массив при ошибке
- */
-export async function getMainSlider(): Promise<SliderItem[]> {
-  try {
-    const page = await wpRest<WPPageResponse>(
-      `wp/v2/pages/${HOME_PAGE_ID}?acf_format=standard`
-    );
-
-    if (!page?.acf?.bloks) {
-      console.warn('No ACF blocks found in page response');
-      return [];
-    }
-
-    const sliderBlock = page.acf.bloks.find(
-      (block) =>
-        block.type_bloka === 'rs_slider' &&
-        Array.isArray(block.slider) &&
-        block.slider.length > 0
-    );
-
-    if (!sliderBlock?.slider) {
-      console.warn('Slider block not found or empty');
-      return [];
-    }
-
-    return sliderBlock.slider;
-  } catch (error) {
-    console.error('Failed to fetch main slider:', error);
-    return [];
-  }
-}
-
-/**
- * Вспомогательная функция для получения конкретного блока по типу (REST API)
- */
-export async function getBlockByType(blockType: string): Promise<PageBlock | null> {
-  try {
-    const page = await wpRest<WPPageResponse>(
-      `wp/v2/pages/${HOME_PAGE_ID}?acf_format=standard`
-    );
-
-    if (!page?.acf?.bloks) {
-      return null;
-    }
-
-    return page.acf.bloks.find((block) => block.type_bloka === blockType) || null;
-  } catch (error) {
-    console.error(`Failed to fetch block type "${blockType}":`, error);
-    return null;
-  }
-}
-
-/**
- * Функция для получения всех блоков страницы (REST API)
- */
-export async function getAllBlocks(): Promise<PageBlock[]> {
-  try {
-    const page = await wpRest<WPPageResponse>(
-      `wp/v2/pages/${HOME_PAGE_ID}?acf_format=standard`
-    );
-
-    return page?.acf?.bloks || [];
-  } catch (error) {
-    console.error('Failed to fetch page blocks:', error);
-    return [];
-  }
-}
-
-// ============================================
-// GraphQL Functions (новые)
+// GraphQL Functions
 // ============================================
 
 interface MainPageBlocksResponse {
@@ -146,28 +72,4 @@ export async function getBlockByTypeGraphQL(
 ): Promise<MainPageBlock | null> {
   const blocks = await getMainPageBlocks();
   return blocks.find((block) => block.typeBloka?.[0] === blockType) || null;
-}
-
-// ============================================
-// Deprecated Functions
-// ============================================
-
-/**
- * @deprecated Используйте getMainPageBlocks() или getMainPageWithCategories()
- */
-export async function getMainPage() {
-  const query = `
-    query MainPage {
-      page(id: "home", idType: URI) {
-        id
-        title
-        mainPage {
-          bloks {
-            typeBloka
-          }
-        }
-      }
-    }
-  `;
-  return wpGraphQL(query);
 }

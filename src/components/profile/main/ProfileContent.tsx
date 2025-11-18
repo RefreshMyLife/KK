@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
 import ProfileHeader from "./ProfileHeader";
 import ProfileMenu from "./ProfileMenu";
 import ArtworkCard from "./ArtworkCard";
@@ -19,14 +18,6 @@ export default function ProfileContent({
   avatarUrl,
   stats,
 }: ProfileContentProps) {
-  const [userName, setUserName] = useState(initialName);
-
-  const handleNameChange = (newName: string) => {
-    setUserName(newName);
-    // Здесь можно добавить API вызов для сохранения имени на сервере
-    console.log("Имя изменено на:", newName);
-  };
-
   return (
     <main className="min-h-screen relative bg-white flex items-start justify-center py-8 px-4 ">
       {/* Фоновое изображение на весь экран */}
@@ -47,10 +38,9 @@ export default function ProfileContent({
           {/* Блок с профилем */}
           <div className="flex flex-col items-center gap-3">
             <ProfileHeader
-              name={userName}
+              name={initialName}
               avatarUrl={avatarUrl}
               stats={stats}
-              onNameChange={handleNameChange}
             />
           </div>
 

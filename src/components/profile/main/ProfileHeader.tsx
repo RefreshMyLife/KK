@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 interface ProfileStats {
   itemsSold: number;
@@ -12,50 +12,17 @@ interface ProfileHeaderProps {
   name: string;
   avatarUrl?: string;
   stats: ProfileStats;
-  onNameChange?: (newName: string) => void;
 }
 
 export default function ProfileHeader({
   name,
   avatarUrl,
   stats,
-  onNameChange,
 }: ProfileHeaderProps) {
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedName, setEditedName] = useState(name);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  // Фокус на input при входе в режим редактирования
-  useEffect(() => {
-    if (isEditing && inputRef.current) {
-      inputRef.current.focus();
-      inputRef.current.select();
-    }
-  }, [isEditing]);
+  const router = useRouter();
 
   const handleEditClick = () => {
-    setEditedName(name);
-    setIsEditing(true);
-  };
-
-  const handleSave = () => {
-    if (editedName.trim() && editedName !== name) {
-      onNameChange?.(editedName.trim());
-    }
-    setIsEditing(false);
-  };
-
-  const handleCancel = () => {
-    setEditedName(name);
-    setIsEditing(false);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      handleSave();
-    } else if (e.key === "Escape") {
-      handleCancel();
-    }
+    router.push("/profile/edit");
   };
 
   return (
@@ -76,25 +43,13 @@ export default function ProfileHeader({
         {/* Имя */}
         <div className="flex gap-3 items-start w-full justify-center md:justify-start">
           <div className="flex-1 min-w-0 text-center md:text-left">
-            {isEditing ? (
-              <input
-                ref={inputRef}
-                type="text"
-                value={editedName}
-                onChange={(e) => setEditedName(e.target.value)}
-                onBlur={handleSave}
-                onKeyDown={handleKeyDown}
-                className="w-full font-gibb text-[36px] leading-[1.11] uppercase tracking-tight bg-transparent border-b-2 border-black outline-none focus:border-custom-blue transition-colors text-center md:text-left"
-              />
-            ) : (
-              <h2 className="font-gibb text-[36px] leading-[1.11] uppercase tracking-tight break-words">
-                {name}
-              </h2>
-            )}
+            <h2 className="font-gibb text-[36px] leading-[1.11] uppercase tracking-tight break-words">
+              {name}
+            </h2>
           </div>
           <button
             onClick={handleEditClick}
-            className="relative w-[60px] h-[40px] flex-shrink-0 bg-[#F5F5F5]  items-center justify-center hover:bg-custom-gray-light transition-all duration-300 ease-in-out cursor-pointer md:block hidden"
+            className="relative w-[60px] h-[40px] flex-shrink-0 bg-[#F5F5F5] items-center justify-center hover:bg-custom-gray-light transition-all duration-300 ease-in-out cursor-pointer md:flex hidden"
           >
             <Image
               src={"/img/profile/icon-pen.svg"}

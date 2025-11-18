@@ -4,31 +4,7 @@ import ContactSection from "@/components/ContactSection/ContactSection";
 import HeroSection from "@/components/home/HeroSection/HeroSection";
 import NewsSection from "@/components/home/NewsSection/NewsSection";
 import ProductSection from "@/components/home/ProductSection/ProductSections";
-import { getMainPageWithCategories, getMainSlider } from "@/services/mainPage";
-
-const newsItems = [
-  {
-    title:
-      "Открытие персональной выставки Пензенских художников Андрея и Арины Уделовых",
-    nameOfTitle: "Статья об искусстве",
-    date: "10 сентября",
-    imageUrl: "/img/news/example.png",
-  },
-  {
-    title:
-      "Открытие персональной выставки Пензенских художников Андрея и Арины Уделовых",
-    nameOfTitle: "Статья об искусстве",
-    date: "10 сентября",
-    imageUrl: "/img/news/example.png",
-  },
-  {
-    title:
-      "Открытие персональной выставки Пензенских художников Андрея и Арины Уделовых",
-    nameOfTitle: "Статья об искусстве",
-    date: "10 сентября",
-    imageUrl: "/img/news/example.png",
-  },
-];
+import { getLatestNews } from "@/services/news";
 const products = [
   {
     title: "ДУГАРЖАПОВ \n БАТО ДУГАРОВИЧ",
@@ -84,9 +60,13 @@ const products = [
 ];
 
 export default async function Home() {
-  const slider = await getMainSlider();
-  //const { blocks, categoryMap } = await getMainPageWithCategories();
-  // console.log(blocks, categoryMap, "CATEGORY");
+  // TODO: Интеграция WordPress слайдера
+  // Для использования данных из WordPress нужно расширить ACF поля и адаптировать структуру данных
+  // const { blocks, categoryMap } = await getMainPageWithCategories();
+
+  // Получаем последние 3 новости из WordPress
+  const newsItems = await getLatestNews(3);
+
   return (
     <div className="layout-wrapper">
       <div className="full-width overflow-x-hidden">

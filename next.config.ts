@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "placehold.co",
       },
+      {
+        protocol: "https",
+        hostname: "kupitkartinu.ru",
+      },
     ],
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',

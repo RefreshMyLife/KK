@@ -3,16 +3,10 @@
 import { useState, useRef, useLayoutEffect } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { NewsItem } from "@/components/ui/NewsItem";
-
-interface News {
-  title: string;
-  nameOfTitle: string;
-  imageUrl: string;
-  date: string;
-}
+import type { NewsItem as NewsItemType } from "@/app/types";
 
 interface NewsProps {
-  newsItems: News[];
+  newsItems: NewsItemType[];
   title: string;
 }
 

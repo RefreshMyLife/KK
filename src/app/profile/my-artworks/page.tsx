@@ -5,8 +5,8 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
 import ArtworkFilters, {
   ArtworkStatus,
-} from "@/components/profile/ArtworkFilters";
-import ArtworkListItem from "@/components/profile/ArtworkListItem";
+} from "@/components/profile/my-artworks/ArtworkFilters";
+import ArtworkListItem from "@/components/profile/my-artworks/ArtworkListItem";
 import { mockArtworks } from "@/data/mockArtworks";
 import Pagination from "@/components/ui/pagination";
 

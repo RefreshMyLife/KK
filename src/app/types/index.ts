@@ -4,6 +4,7 @@ export * from './image';
 // Посты и категории
 export * from './post';
 export * from './category';
+export * from './news';
 
 // Товары
 export * from './product';

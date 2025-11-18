@@ -1,10 +1,16 @@
 import { AcfImage, ImageUrl } from './image';
 import type { Category } from './category';
-// ============================================
-// REST API Types 
-// ============================================
 
-/** Элемент слайдера на главной странице */
+// ============================================
+// REST API Types (DEPRECATED - используйте GraphQL типы)
+// ============================================
+// Эти типы оставлены для обратной совместимости
+// Для новых функций используйте GraphQL типы (MainPageSlide, MainPageBlock и т.д.)
+
+/**
+ * @deprecated Используйте MainPageSlide из GraphQL типов
+ * Элемент слайдера на главной странице
+ */
 export interface SliderItem {
   title: string;
   content: string;
@@ -14,26 +20,38 @@ export interface SliderItem {
   };
 }
 
-/** Элемент feature/преимущества */
+/**
+ * @deprecated Используйте MainPageFeature из GraphQL типов
+ * Элемент feature/преимущества
+ */
 export interface Feature {
   icon: string;
   title: string;
   content: string;
 }
 
-/** Элемент marquee */
+/**
+ * @deprecated Используйте MainPageMarquee из GraphQL типов
+ * Элемент marquee
+ */
 export interface MarqueeItem {
   img: string;
 }
 
-/** Последний слайд блока */
+/**
+ * @deprecated Используйте MainPageLastSlide из GraphQL типов
+ * Последний слайд блока
+ */
 export interface LastSlide {
   img: string | false;
   title: string;
   btn: string;
 }
 
-/** Блок страницы ACF (REST API) */
+/**
+ * @deprecated Используйте MainPageBlock из GraphQL типов
+ * Блок страницы ACF (REST API)
+ */
 export interface PageBlock {
   type_bloka: string;
   slider?: SliderItem[] | false;
@@ -45,12 +63,18 @@ export interface PageBlock {
   last_slaid: LastSlide; // Опечатка "slaid" вместо "slide"
 }
 
-/** ACF данные страницы */
+/**
+ * @deprecated REST API больше не используется
+ * ACF данные страницы
+ */
 export interface PageACF {
   bloks: PageBlock[];
 }
 
-/** Полная структура ответа WordPress REST API */
+/**
+ * @deprecated REST API больше не используется
+ * Полная структура ответа WordPress REST API
+ */
 export interface WPPageResponse {
   id: number;
   date: string;

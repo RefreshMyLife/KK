@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import Pagination from "@/components/ui/pagination";
-import BidHistoryCard from "@/components/profile/BidHistoryCard";
+import BidHistoryCard from "@/components/profile/bid-history/BidHistoryCard";
 import { mockBidHistory } from "@/data/mockBidHistory";
 
 export default function BidHistoryPage() {

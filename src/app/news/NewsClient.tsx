@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { NewsItem } from "@/components/ui/NewsItem";
 import Pagination from "@/components/ui/pagination";
-import { NewsItemData } from "@/data/mockNews";
+import type { NewsItem as NewsItemType } from "@/app/types";
 
 interface NewsClientProps {
-  news: NewsItemData[];
+  news: NewsItemType[];
 }
 
 const ITEMS_PER_PAGE = 9; // 3 колонки × 3 ряда
@@ -30,8 +30,8 @@ export default function NewsClient({ news }: NewsClientProps) {
     <div>
       {/* Сетка новостей - 3 в ряд */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {currentNews.map((newsItem, index) => (
-          <NewsItem key={index} newsItem={newsItem} />
+        {currentNews.map((newsItem) => (
+          <NewsItem key={newsItem.id} newsItem={newsItem} />
         ))}
       </div>
 

@@ -1,6 +1,6 @@
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
-import SubmitArtworkForm from "@/components/profile/SubmitArtworkForm";
-import SubmitArtworkInfo from "@/components/profile/SubmitArtworkInfo";
+import SubmitArtworkForm from "@/components/profile/submit-artwork/SubmitArtworkForm";
+import SubmitArtworkInfo from "@/components/profile/submit-artwork/SubmitArtworkInfo";
 
 export default function SubmitArtworkPage() {
   const breadcrumbItems = [
