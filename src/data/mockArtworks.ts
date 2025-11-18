@@ -1,4 +1,4 @@
-import { ArtworkStatusType } from "@/components/profile/ArtworkListItem";
+import { ArtworkStatusType } from "@/components/profile/my-artworks/ArtworkListItem";
 
 export interface MockArtwork {
   id: string;

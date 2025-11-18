@@ -4,8 +4,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useFormValidation } from "@/hooks/useFormValidation";
 import ImageUploadSection from "./ImageUploadSection";
-import FormFieldsTop from "./FormFieldsTop";
-import { FormFieldsBottom } from "./FormFieldsBottom";
+import FormFieldsTop from "../edit/FormFieldsTop";
+import { FormFieldsBottom } from "../edit/FormFieldsBottom";
 
 export default function SubmitArtworkForm() {
   const [hasImages, setHasImages] = useState(false);
