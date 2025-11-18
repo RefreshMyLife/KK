@@ -1,4 +1,4 @@
-import { PRODUCT_CARD_FRAGMENT, PRODUCT_FULL_FRAGMENT } from '../fragmants/product';
+import { PRODUCT_CARD_FRAGMENT, PRODUCT_FULL_FRAGMENT, PAINTING_FIELDS_FRAGMENT } from '../fragmants/product';
 
 export const GET_PRODUCT_BY_SLUG = `
   ${PRODUCT_FULL_FRAGMENT}
@@ -51,6 +51,23 @@ export const GET_RELATED_PRODUCTS = `
     ) {
       nodes {
         ...ProductCardFields
+      }
+    }
+  }
+`;
+
+// Оптимизированный запрос для получения картин по категории
+export const GET_PAINTINGS_BY_CATEGORY_SLUG = `
+  ${PAINTING_FIELDS_FRAGMENT}
+  query GetPaintingsByCategorySlug($categorySlug: ID!, $first: Int = 10) {
+    category(id: $categorySlug, idType: SLUG) {
+      id
+      name
+      slug
+      posts(first: $first) {
+        nodes {
+          ...PaintingFields
+        }
       }
     }
   }

@@ -1,10 +1,11 @@
-import { Product, ProductDetails } from '@/app/types';
+import { Product, ProductDetails, PaintingCategoryResponse } from '@/app/types';
 import { wpGraphQL } from '@/lib/wordpress';
 import {
   GET_PRODUCT_BY_SLUG,
   GET_PRODUCTS,
   GET_PRODUCTS_BY_CATEGORY,
   GET_RELATED_PRODUCTS,
+  GET_PAINTINGS_BY_CATEGORY_SLUG,
 } from './graphql';
 
 interface ProductsResponse {
@@ -81,6 +82,49 @@ export async function getRelatedProducts(
     return data.posts.nodes;
   } catch (error) {
     console.error('Failed to fetch related products:', error);
+    return [];
+  }
+}
+
+/**
+ * Получает картины по категории (slug) для главной страницы
+ * Возвращает данные готовые для компонента ProductCard
+ * @param categorySlug - slug категории
+ * @param limit - количество картин (по умолчанию 10)
+ */
+export async function getPaintingsByCategory(categorySlug: string, limit = 10) {
+  try {
+    const data = await wpGraphQL<PaintingCategoryResponse>(
+      GET_PAINTINGS_BY_CATEGORY_SLUG,
+      { categorySlug, first: limit }
+    );
+
+    // Маппинг данных WordPress в формат ProductCard
+    const paintings = data.category.posts.nodes.map((post) => {
+      const { paintings: paintingData, featuredImage, title, slug } = post;
+
+      // Форматирование цены
+      const formattedPrice = paintingData.picturePrice
+        ? `${paintingData.picturePrice.toLocaleString('ru-RU')} ₽`
+        : '';
+
+      return {
+        id: post.id,
+        slug: slug,
+        title: title, // Название картины
+        subtitle: '', // Можно добавить описание если нужно
+        price: formattedPrice,
+        details: paintingData.pictureTechnique || '',
+        size: paintingData.pictureSize || '',
+        country: '', // Нет в данных
+        year: '', // Нет в данных
+        imageUrl: featuredImage?.node.sourceUrl || '',
+      };
+    });
+
+    return paintings;
+  } catch (error) {
+    console.error(`Failed to fetch paintings for category "${categorySlug}":`, error);
     return [];
   }
 }

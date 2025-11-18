@@ -2,9 +2,37 @@ import React from "react";
 import ProductGallery from "@/components/product/ProductGallery";
 import ProductInfo from "@/components/product/ProductInfo";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { getProductBySlug } from "@/services/product";
+import { getProductBySlug, getProducts } from "@/services/product";
 import { ProductDetails } from "@/app/types";
 import ProductSection from "@/components/home/ProductSection/ProductSections";
+
+// ISR конфигурация: только On-Demand Revalidation
+// Страницы товаров не обновляются автоматически, только через API
+export const revalidate = false;
+
+// Разрешить генерацию страниц для товаров не в списке generateStaticParams
+export const dynamicParams = true;
+
+/**
+ * Предгенерация статических параметров для топ-100 товаров при build
+ * Остальные товары будут сгенерированы при первом запросе (ISR on-demand)
+ */
+export async function generateStaticParams() {
+  try {
+    // Получаем первые 100 товаров для предгенерации
+    const { nodes } = await getProducts(100);
+
+    console.log(`[ISR] Pre-generating ${nodes.length} product pages...`);
+
+    return nodes.map((product) => ({
+      slug: product.slug,
+    }));
+  } catch (error) {
+    console.error('[ISR] Failed to generate static params for products:', error);
+    // Возвращаем пустой массив, чтобы не блокировать сборку
+    return [];
+  }
+}
 
 export default async function ProductPage({
   params,

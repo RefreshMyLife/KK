@@ -2,7 +2,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ShoppingCart, Check, Heart } from "lucide-react";
 import CountdownTimer from "@/components/CountDownTimer";
 import { useCartStore } from "@/store/useCartStore";
@@ -36,12 +36,18 @@ export const ProductCard = ({
 }: ProductCardProps) => {
   const [isAdded, setIsAdded] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const addItem = useCartStore((state) => state.addItem);
 
   const toggleFavorite = useFavoritesStore((state) => state.toggleItem);
   const isFavorite = useFavoritesStore((state) =>
     state.isFavorite(id || `${title}-${Date.now()}`)
   );
+
+  // Предотвращение hydration error для favorites из localStorage
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Преобразуем строку цены в число
   const priceNumber = parseInt(price.replace(/[^\d]/g, "")) || 0;
@@ -73,16 +79,18 @@ export const ProductCard = ({
           className="block bg-custom-gray-light py-6 px-3"
         >
           {imageUrl ? (
-            <Image
-              src={imageUrl}
-              alt={title}
-              width={400}
-              height={400}
-              className="w-full"
-            />
+            <div className="w-full aspect-square relative overflow-hidden">
+              <Image
+                src={imageUrl}
+                alt={title}
+                fill
+                sizes="(max-width: 640px) 280px, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover"
+              />
+            </div>
           ) : (
-            <div className="w-full aspect-square">
-              <span>No Image</span>
+            <div className="w-full aspect-square flex items-center justify-center bg-gray-200">
+              <span className="text-gray-400">No Image</span>
             </div>
           )}
         </Link>
@@ -109,11 +117,11 @@ export const ProductCard = ({
           className="absolute top-10 right-7 w-8 h-8 rounded-full bg-white flex items-center justify-center
             opacity-0 group-hover:opacity-100 transition-opacity duration-300
             hover:bg-gray-100 z-10 shadow-md"
-          aria-label={isFavorite ? "Удалить из избранного" : "Добавить в избранное"}
+          aria-label={mounted && isFavorite ? "Удалить из избранного" : "Добавить в избранное"}
         >
           <Heart
             className={`w-5 h-5 transition-all duration-300 ${
-              isFavorite ? "fill-black stroke-black" : "stroke-black"
+              mounted && isFavorite ? "fill-black stroke-black" : "stroke-black"
             } ${isAnimating ? "scale-125" : "scale-100"}`}
             strokeWidth={1.5}
           />

@@ -66,3 +66,31 @@ export const PRODUCT_FULL_FRAGMENT = `
     }
   }
 `;
+
+// Фрагмент для ACF полей картин (оптимизированный)
+export const PAINTING_FIELDS_FRAGMENT = `
+  fragment PaintingFields on Post {
+    id
+    title
+    slug
+    paintings {
+      picturePrice
+      pictureTechnique
+      pictureSize
+      pictureInstock
+      gallery {
+        nodes {
+          id
+          sourceUrl
+          altText
+        }
+      }
+    }
+    featuredImage {
+      node {
+        sourceUrl
+        altText
+      }
+    }
+  }
+`;

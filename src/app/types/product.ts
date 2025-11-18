@@ -43,3 +43,40 @@ export interface ProductDetails extends Product {
     }>;
   };
 }
+
+// Типы для ACF полей картин (paintings)
+export interface PaintingACF {
+  picturePrice: number | null;
+  pictureTechnique: string | null;
+  pictureSize: string | null;
+  pictureInstock: string[] | null;
+  gallery: {
+    nodes: MediaItem[];
+  } | null;
+}
+
+// Пост с ACF полями paintings
+export interface PaintingPost {
+  id: string;
+  title: string;
+  slug: string;
+  paintings: PaintingACF;
+  featuredImage?: {
+    node: {
+      sourceUrl: string;
+      altText: string;
+    };
+  } | null;
+}
+
+// Ответ GraphQL для запроса картин по категории
+export interface PaintingCategoryResponse {
+  category: {
+    id: string;
+    name: string;
+    slug: string;
+    posts: {
+      nodes: PaintingPost[];
+    };
+  };
+}
